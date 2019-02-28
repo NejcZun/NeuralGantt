@@ -1,0 +1,54 @@
+<html>
+<head>
+    <script type="text/javascript" src="js/vis.min.js"></script>
+    <link href="css/vis.css" rel="stylesheet" type="text/css" />
+
+    <style type="text/css">
+        #mynetwork {
+            width: 600px;
+            height: 400px;
+            border: 1px solid lightgray;
+        }
+    </style>
+</head>
+<body>
+<div id="mynetwork"></div>
+
+<script type="text/javascript">
+    var nodes = [
+    {id:1, group:'1', label:"Meeting"},
+	{id:2, group:'1', label:"Raz dela"},
+	{id:3, group:'1', label:""},
+	{id:4, group:'2', label:""},
+	{id:5, group:'2', label:""}
+	]
+
+    var edges = new vis.DataSet([
+        {from: 1, to: 2},
+		{from: 1, to: 3},
+		{from: 2, to: 4},
+		{from: 4, to: 5}
+    ]);
+
+    var container = document.getElementById('mynetwork');
+    var data = {
+        nodes: nodes,
+        edges: edges
+    };
+    var nodes = [
+    {id:1, group:'1', label:"I'm in a custom group called 'myGroup'!"},
+	{id:2, group:'2', label:"I'm in a custom group called 'myGroup'!"}
+	]
+
+	var options = {
+	  groups: {
+		1: {color:{background:'red'}, borderWidth:0},
+		2: {color:{background:'gray'}, borderWidth:0}
+	  }
+	}
+
+    // initialize your network!
+    var network = new vis.Network(container, data, options);
+</script>
+</body>
+</html>
