@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>HTML5 Gantt Chart (DayPilot Pro for JavaScript)</title>
+    <title>Editor</title>
 
     <!-- demo stylesheet -->
     <link type="text/css" rel="stylesheet" href="../media/layout.css" />
