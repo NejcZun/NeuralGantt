@@ -22,14 +22,9 @@ $isparent = $stmt->fetchColumn(0);
 <head>
     <title></title>
     
-    <!-- demo stylesheet -->
-    <link type="text/css" rel="stylesheet" href="media/layout.css" />    
-
-    <!-- helper libraries -->
-    <script src="js/jquery-1.9.1.min.js" type="text/javascript"></script>
-
-    <!-- daypilot libraries -->
-    <script src="js/daypilot/daypilot-all.min.js" type="text/javascript"></script>
+    <link type="text/css" rel="stylesheet" href="../media/layout.css" />    
+    <script src="../js/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="../js/gantt.min.js" type="text/javascript"></script>
 	
 </head>
 <body style="margin:20px">

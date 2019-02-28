@@ -1,8 +1,4 @@
-﻿p, body, td { font-family: Tahoma, Arial, Sans-Serif; font-size: 10pt; }
-body { padding: 0px; margin: 0px; background-color: #ffffff; }
-a { color: #1155a3; }
-
-/* COMMON */
+﻿/* COMMON */
 .hidden { display: none; }
 .padded { padding: 10px; }
 .space { margin: 10px 0px 10px 0px; }
