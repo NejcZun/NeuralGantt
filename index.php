@@ -24,10 +24,10 @@
     <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style="background: #5983e8;">
       <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
         <a class="navbar-brand brand-logo" href="index.php">
-          <img src="media/pictures/logo.svg" alt="logo" />
+          <img src="media/pictures/logo-mini.svg" alt="logo" style="height: 40px;width: 40px;"/><h2 style="color:rgb(74, 74, 74); padding-top:10px;">UV Projektna</h2>
         </a>
         <a class="navbar-brand brand-logo-mini" href="index.php">
-		<img src="media/pictures/logo-mini.svg" alt="logo" />
+		<img src="media/pictures/logo-mini.svg" alt="logo" style="height: 40px;width: 100%;"/>
         </a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center">
