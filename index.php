@@ -79,6 +79,7 @@
                   <p class="font-weight-light small-text">
                     New product launch
                   </p>
+                  <!-- x3 was here -->
                 </div>
               </a>
               <div class="dropdown-divider"></div>
