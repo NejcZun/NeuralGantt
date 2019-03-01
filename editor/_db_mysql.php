@@ -68,6 +68,24 @@ if (!$exists) {
       $end = $m['end'];
       $stmt->execute();
     }
+        //
+
+    $db->exec("CREATE TABLE user (
+    id INTEGER PRIMARY KEY AUTO_INCEREMENT,
+    email VARCHAR(100) NOT NULL,
+    password VARCHAR(1024) NOT NULL,
+    salt VARCHAR(100) NOT NULL,
+    fname VARCHAR(100) NOT NULL,
+    lname VARCHAR(100) NOT NULL,
+    role VARCHAR(100) NOT NULL
+    );")
+
+    $users = array( array('email' => 'Admin',
+                        'password' => hash_pbkdf2('sha3-256', 'admin', 'adminSalt', 3),
+                        'adminSalt' => 'adminSalt',
+                        'fname' => 'Admin',
+                        'lname' => 'Sysadmin',
+                        'role' => 'Admin' ); );
 }
 
 date_default_timezone_set("UTC");
