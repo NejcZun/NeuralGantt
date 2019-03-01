@@ -68,24 +68,75 @@ if (!$exists) {
       $end = $m['end'];
       $stmt->execute();
     }
-        //
+}
 
+$exists = tableExists($db, "role");
+
+if(!$exists){
+    // CREATE ROLE TABLE W/ PRESET ROLE ADMIN: 0 / admin REFERENCES User TABLE
+    $db->exec("CREATE TABLE role (
+        role_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+        role VARCHAR(100) NOT NULL
+    );");
+
+    $roles = array( 'admin' );
+
+    $insertRoles = "INSERT INTO role (role) VALUES (:role)";
+    $stmt = $db->prepare($insertRoles);
+
+    $stmt->bindParam(':role', $role);
+
+    foreach ($roles as $r){
+        $role = $r;
+        $stmt->execute();
+    }
+}
+
+$exists = tableExists($db, "user");
+
+if(!$exists){
+    // CREATE USER TABLE W/ PRESET ADMIN: admin / admin | LOGIN
     $db->exec("CREATE TABLE user (
-    id INTEGER PRIMARY KEY AUTO_INCEREMENT,
-    email VARCHAR(100) NOT NULL,
-    password VARCHAR(1024) NOT NULL,
-    salt VARCHAR(100) NOT NULL,
-    fname VARCHAR(100) NOT NULL,
-    lname VARCHAR(100) NOT NULL,
-    role VARCHAR(100) NOT NULL
-    );")
-
-    $users = array( array('email' => 'Admin',
-                        'password' => hash_pbkdf2('sha3-256', 'admin', 'adminSalt', 3),
-                        'adminSalt' => 'adminSalt',
-                        'fname' => 'Admin',
-                        'lname' => 'Sysadmin',
-                        'role' => 'Admin' ); );
+        id INTEGER PRIMARY KEY AUTO_INCEREMENT,
+        email VARCHAR(100) NOT NULL,
+        uname VARCHAR(100) NOT NULL,
+        password VARCHAR(1024) NOT NULL,
+        salt VARCHAR(100) NOT NULL,
+        fname VARCHAR(100) NOT NULL,
+        lname VARCHAR(100) NOT NULL,
+        role_id VARCHAR(100) FOREIGN KEY(role_id) REFERENCES Role(role_id)
+        );")
+    
+        $users = array( array('email' => 'admin@admin.com',
+                            'password' => hash_pbkdf2('sha3-256', 'admin', 'adminSalt', 3),
+                            'uname' => 'Admin'
+                            'adminSalt' => 'adminSalt',
+                            'fname' => 'Admin',
+                            'lname' => 'Sysadmin',
+                            'role' => '0' ) 
+                        );
+        
+        $insertUsers = "INSERT INTO user (email, uname, password, salt, fname, lname, role) VAKUES (:email, :uname, :password, :salt, :fname, :lname, :role)";
+        $stmt = $db->prepare($insertUsers);
+    
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':uname', $uname)
+        $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':salt', $salt);
+        $stmt->bindParam(':fname', $fname);
+        $stmt->bindParam(':lname', $lname);
+        $stmt->bindParam(':role', $role);
+    
+        foreach ($insertUsers as $e) {
+            $email = $e['email'];
+            $uname = $e['uname']
+            $password = $e['password'];
+            $salt = $e['salt'];
+            $fname = $e['fname'];
+            $lname = $e['lname'];
+            $role = $e['role'];
+            $stmt->execute();
+        }
 }
 
 date_default_timezone_set("UTC");
@@ -191,6 +242,35 @@ function db_get_tasks($parent) {
 
     $stmt->execute();
     return $stmt->fetchAll();
+}
+
+function db_get_user($id){
+    global $db;
+
+    $str = "SELECT * FROM user WHERE id = :id";
+    $stmt = $db->prepare($str);
+    $stmt->bindParam(":id", $id);
+    $stmt->execute();
+    return $stmt->fetch();
+}
+
+function db_get_users(){
+    global $db;
+
+    $str = "SELECT * FROM user";
+    $stmt = $db->prepare($str);
+    $stmt->execute();
+    return $stmt->fetch();
+}
+
+function db_get_users($role){
+    global $db;
+
+    $str = "SELECT * FROM user WHERE role = :role";
+    $stmt = $db->prepare($str);
+    $stmt->bindParam(":role", $role);
+    $stmt->execute();
+    return $stmt->fetch();
 }
 
 ?>
