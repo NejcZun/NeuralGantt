@@ -74,7 +74,7 @@ if (!$exists) {
 $exists = tableExists($db, "role");
 
 if(!$exists){
-    // CREATE ROLE TABLE W/ PRESET ROLE ADMIN: 0 / admin REFERENCES User TABLE
+    // CREATE ROLE TABLE W/ PRESET ROLE ADMIN: 1 / admin REFERENCES User TABLE
     $db->exec("CREATE TABLE role (
         role_id INTEGER PRIMARY KEY AUTO_INCREMENT,
         rolename VARCHAR(100) NOT NULL
@@ -82,7 +82,7 @@ if(!$exists){
 
     $roles = array('admin');
 
-    $insertRoles = "INSERT INTO role (role) VALUES (:role)";
+    $insertRoles = "INSERT INTO role (rolename) VALUES (:role)";
     $stmt = $db->prepare($insertRoles);
 
     $stmt->bindParam(':role', $role);
@@ -96,7 +96,7 @@ if(!$exists){
 $exists = tableExists($db, "user");
 
 if(!$exists){
-    // CREATE USER TABLE W/ PRESET ADMIN: admin / admin | LOGIN
+    // CREATE USER TABLE W/ PRESET ADMIN: admin / admin | LOGIN /w admin access role = 1
     $db->exec("CREATE TABLE user (
         id INTEGER PRIMARY KEY AUTO_INCREMENT,
         email VARCHAR(100) NOT NULL,
@@ -110,15 +110,15 @@ if(!$exists){
         );");
     
         $users = array( array('email' => 'admin@admin.com',
-                            'password' => hash_pbkdf2('sha3-256', 'admin', 'adminSalt', 3),
                             'uname' => 'Admin',
-                            'adminSalt' => 'adminSalt',
+                            'password' => hash_pbkdf2('sha3-256', 'admin', 'adminSalt', 3),
+                            'salt' => 'adminSalt',
                             'fname' => 'Admin',
                             'lname' => 'Sysadmin',
-                            'role' => '0' ) 
+                            'role_id' => 1 ) 
                         );
         
-        $insertUsers = "INSERT INTO user (email, uname, password, salt, fname, lname, role) VAKUES (:email, :uname, :password, :salt, :fname, :lname, :role)";
+        $insertUsers = "INSERT INTO user (email, uname, password, salt, fname, lname, role_id) VALUES (:email, :uname, :password, :salt, :fname, :lname, :role_id)";
         $stmt = $db->prepare($insertUsers);
     
         $stmt->bindParam(':email', $email);
@@ -127,16 +127,16 @@ if(!$exists){
         $stmt->bindParam(':salt', $salt);
         $stmt->bindParam(':fname', $fname);
         $stmt->bindParam(':lname', $lname);
-        $stmt->bindParam(':role', $role);
+        $stmt->bindParam(':role_id', $role_id);
     
-        foreach ($insertUsers as $e) {
+        foreach ($users as $e) {
             $email = $e['email'];
             $uname = $e['uname'];
             $password = $e['password'];
             $salt = $e['salt'];
             $fname = $e['fname'];
             $lname = $e['lname'];
-            $role = $e['role'];
+            $role_id = $e['role_id'];
             $stmt->execute();
         }
 }
