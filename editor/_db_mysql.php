@@ -77,7 +77,7 @@ if(!$exists){
     // CREATE ROLE TABLE W/ PRESET ROLE ADMIN: 0 / admin REFERENCES User TABLE
     $db->exec("CREATE TABLE role (
         role_id INTEGER PRIMARY KEY AUTO_INCREMENT,
-        role VARCHAR(100) NOT NULL
+        rolename VARCHAR(100) NOT NULL
     );");
 
     $roles = array('admin');
@@ -98,19 +98,20 @@ $exists = tableExists($db, "user");
 if(!$exists){
     // CREATE USER TABLE W/ PRESET ADMIN: admin / admin | LOGIN
     $db->exec("CREATE TABLE user (
-        id INTEGER PRIMARY KEY AUTO_INCEREMENT,
+        id INTEGER PRIMARY KEY AUTO_INCREMENT,
         email VARCHAR(100) NOT NULL,
         uname VARCHAR(100) NOT NULL,
         password VARCHAR(1024) NOT NULL,
         salt VARCHAR(100) NOT NULL,
         fname VARCHAR(100) NOT NULL,
         lname VARCHAR(100) NOT NULL,
-        role_id VARCHAR(100) FOREIGN KEY(role_id) REFERENCES Role(role_id)
-        );")
+        role_id INTEGER,
+        FOREIGN KEY (role_id) REFERENCES role(role_id)
+        );");
     
         $users = array( array('email' => 'admin@admin.com',
                             'password' => hash_pbkdf2('sha3-256', 'admin', 'adminSalt', 3),
-                            'uname' => 'Admin'
+                            'uname' => 'Admin',
                             'adminSalt' => 'adminSalt',
                             'fname' => 'Admin',
                             'lname' => 'Sysadmin',
@@ -121,7 +122,7 @@ if(!$exists){
         $stmt = $db->prepare($insertUsers);
     
         $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':uname', $uname)
+        $stmt->bindParam(':uname', $uname);
         $stmt->bindParam(':password', $password);
         $stmt->bindParam(':salt', $salt);
         $stmt->bindParam(':fname', $fname);
@@ -130,7 +131,7 @@ if(!$exists){
     
         foreach ($insertUsers as $e) {
             $email = $e['email'];
-            $uname = $e['uname']
+            $uname = $e['uname'];
             $password = $e['password'];
             $salt = $e['salt'];
             $fname = $e['fname'];
@@ -260,16 +261,6 @@ function db_get_users(){
 
     $str = "SELECT * FROM user";
     $stmt = $db->prepare($str);
-    $stmt->execute();
-    return $stmt->fetch();
-}
-
-function db_get_users($role){
-    global $db;
-
-    $str = "SELECT * FROM user WHERE role = :role";
-    $stmt = $db->prepare($str);
-    $stmt->bindParam(":role", $role);
     $stmt->execute();
     return $stmt->fetch();
 }
