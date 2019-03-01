@@ -51,8 +51,8 @@ if (!$exists) {
 
     $messages = array(
                     array('name' => 'Task 1',
-                        'start' => '2017-01-05T00:00:00',
-                        'end' => '2017-01-10T10:00:00')
+                        'start' => '2019-01-05T00:00:00',
+                        'end' => '2019-01-10T10:00:00')
                 );
 
     $insert = "INSERT INTO task (name, start, end) VALUES (:name, :start, :end)";
