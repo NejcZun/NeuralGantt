@@ -1,5 +1,5 @@
 <?php
-require_once '_db_mysql.php';
+require '_db_mysql.php';
 
 $now = (new DateTime("now"))->format('Y-m-d H:i:s');
 $ordinal = db_get_max_ordinal(null) + 1;

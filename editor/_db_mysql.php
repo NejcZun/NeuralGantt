@@ -70,6 +70,7 @@ if (!$exists) {
     }
 }
 
+
 $exists = tableExists($db, "role");
 
 if(!$exists){
@@ -79,7 +80,7 @@ if(!$exists){
         role VARCHAR(100) NOT NULL
     );");
 
-    $roles = array( 'admin' );
+    $roles = array('admin');
 
     $insertRoles = "INSERT INTO role (role) VALUES (:role)";
     $stmt = $db->prepare($insertRoles);
