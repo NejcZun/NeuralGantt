@@ -1,3 +1,4 @@
+<?php include_once './vendors/functions/db_mysql.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +21,32 @@
           <div class="col-lg-4 mx-auto">
             <div class="auto-form-wrapper">
 			<h2 class="text-center mb-4">Login</h2>
-              <form action="#">
+        <?php
+          if(isset($_POST['username'])){
+            if(db_user_exists($_POST['username'])) {
+              if(db_user_login($_POST['username'], $_POST['password'])){
+                if($_POST['remember']){
+                  // MAYBE LONGER THAN 1 DAY SECURITY
+                  // BASE 64 ENCODE MAYBE FROM hmac_hash w/ keyval
+                  setcookie('user', base64_encode($_POST['username']), time() + 86400);
+                  //echo base64_decode($_COOKIE['user']);
+                }
+                else{
+                  // SET FOR 1 hour
+                  setcookie('user', base64_encode($_POST['username']), time() + 3600);
+                }
+              }
+              else {
+                // THROW ALERT WRONG PASSWORD
+                echo 'No passo!! WRONGO PASSO';
+              }
+            }
+            // USER DOENST EXITS BUT WE DONT TELL THEM THAT SO WRONG USER / PASSWORD
+            // THROW ALERT
+            else echo "No passo";
+          }
+          ?>
+              <form action="./login.php" method="POST">
 			    <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-prepend bg-primary border-primary">
@@ -28,7 +54,7 @@
                                <i class="mdi mdi mdi-account text-white"></i>
                             </span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="colored-addon2">
+                        <input type="text" id="formUsername" name="username" onkeyup="success()" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="colored-addon2" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -38,16 +64,28 @@
                               <i class="mdi mdi-shield-outline text-white"></i>
                             </span>
                         </div>
-                        <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="colored-addon1">
+                        <input id="formPassword" type="password" name="password" onkeyup="success()" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="colored-addon1" required>
                     </div>
                 </div>
                 <div class="form-group">
-                  <button class="btn btn-primary submit-btn btn-block">Login</button>
+                <!-- ToDO: RELOCATE JS TO OTHER FILE !!! NOT INLINE -->
+                  <script type="text/javascript">
+                    function success(){
+                      if(document.getElementById("formUsername").value === "" ||
+                        document.getElementById("formPassword").value === ""){
+                          document.getElementById("formSubmit").disabled = true;
+                          document.getElementById("formSubmit").style.backgroundcolor = "#c6d6ef";
+                        } else {
+                          document.getElementById("formSubmit").disabled = false;
+                        }
+                    }
+                  </script>
+                  <input id="formSubmit" type="submit" value="Login" class="btn btn-primary submit-btn btn-block" disabled>
                 </div>
                 <div class="form-group d-flex justify-content-between">
                   <div class="form-check form-check-flat mt-0">
                     <label class="form-check-label">
-                      <input type="checkbox" class="form-check-input" checked> Keep me signed in
+                      <input type="checkbox" name="remember" class="form-check-input" checked> Keep me signed in
                     </label>
                   </div>
                   <a href="#" class="text-small forgot-password text-black">Forgot Password</a>

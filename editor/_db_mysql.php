@@ -110,7 +110,7 @@ if(!$exists){
         );");
     
         $users = array( array('email' => 'admin@admin.com',
-                            'uname' => 'Admin',
+                            'uname' => 'admin',
                             'password' => hash_pbkdf2('sha3-256', 'admin', 'adminSalt', 3),
                             'salt' => 'adminSalt',
                             'fname' => 'Admin',
@@ -261,6 +261,16 @@ function db_get_users(){
 
     $str = "SELECT * FROM user";
     $stmt = $db->prepare($str);
+    $stmt->execute();
+    return $stmt->fetch();
+}
+
+function db_user_exists($user){
+    global $db;
+
+    $query = "SELECT EXISTS(SELECT id from user WHERE uname=:uname)";
+    $stmt = $db->prepare($query);
+    $stmt->bindParam(":uname", $user)
     $stmt->execute();
     return $stmt->fetch();
 }
