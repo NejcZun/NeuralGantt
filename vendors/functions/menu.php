@@ -89,7 +89,7 @@ function display_user_navigation_project(){
                 </div>
               </div>';
               if(check_if_user_admin_or_mod()){
-				  echo '<a href="index.php" style="width:100%; text-decoration:none;"><button class="btn btn-success btn-block">New Project
+				  echo '<a href="create.php" style="width:100%; text-decoration:none;"><button class="btn btn-success btn-block">New Project
                 <i class="mdi mdi-plus"></i>
               </button></a>';
 			  }

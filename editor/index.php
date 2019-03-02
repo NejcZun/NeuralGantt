@@ -357,7 +357,7 @@
 
             <script type="text/javascript">
                 var dp = new DayPilot.Gantt("dp");
-                dp.startDate = new DayPilot.Date("2019-01-01");
+                dp.startDate = new DayPilot.Date("2019-03-01");
                 dp.days = 93;
 
                 dp.linkBottomMargin = 5;

@@ -41,7 +41,9 @@ if (!$exists) {
     ordinal_priority DATETIME,
     complete         INTEGER  DEFAULT '0' NOT NULL
     );");
-
+}
+$exists = tableExists($db, "link");
+if (!$exists) {
     $db->exec("CREATE TABLE link (
     id      INTEGER       PRIMARY KEY AUTO_INCREMENT,
     from_id INTEGER       NOT NULL,
@@ -51,8 +53,8 @@ if (!$exists) {
 
     $messages = array(
                     array('name' => 'Task 1',
-                        'start' => '2019-01-05T00:00:00',
-                        'end' => '2019-01-10T10:00:00')
+                        'start' => '2019-03-05T00:00:00',
+                        'end' => '2019-03-10T10:00:00')
                 );
 
     $insert = "INSERT INTO task (name, start, end) VALUES (:name, :start, :end)";
@@ -178,7 +180,7 @@ if(!$exists){
     );");
 }
 
-date_default_timezone_set("UTC+1");
+date_default_timezone_set("Europe/Ljubljana");
 
 function db_get_max_ordinal($parent) {
     global $db;
