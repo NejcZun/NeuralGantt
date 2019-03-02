@@ -1,12 +1,13 @@
 # UVProjektnaNaloga
 ### To do list:
 - [x] Main page
-- [ ] Login and Registration
-- [ ] Authentication
+- [x] Login
+- [ ] Registration (Grega WIP)
+- [x] Authentication
 - [ ] User Profile (pass reset, view)
 - [ ] Admin (manage profiles)
 - [ ] Authentication on pages
-- [ ] Create projects
+- [x] Create projects
 - [ ] Manage projects (change name, add people...)
 - [ ] Implement gantt into project view
 - [ ] UI tweaks
