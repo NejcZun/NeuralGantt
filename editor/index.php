@@ -27,7 +27,7 @@
 </head>
 <body>
   <?php
-  //require '_db_mysql.php';
+  require '_db_mysql.php';
   ?>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->

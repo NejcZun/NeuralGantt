@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+<?php include 'vendors/functions/auth.php'; user_has_valid_cookie_index(); ?>
 <!DOCTYPE html>
 <html lang="en">
 

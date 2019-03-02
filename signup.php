@@ -1,4 +1,4 @@
-<?php require_once 'vendors/functions/auth.php'; ?>
+<?php include 'vendors/functions/auth.php'; user_has_cookie_rederect(); ?>
 <!DOCTYPE html>
 <html lang="en">
 

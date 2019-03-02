@@ -1,7 +1,4 @@
-<?php session_start(); ?>
-<?php
-if(isset($_COOKIE['user'])){echo '<script>window.location.replace("index.php");</script>';}
-?>
+<?php include 'vendors/functions/auth.php'; user_has_valid_cookie(); ?>
 <!DOCTYPE html>
 <html lang="en">
 

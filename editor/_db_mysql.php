@@ -80,7 +80,7 @@ if(!$exists){
         rolename VARCHAR(100) NOT NULL
     );");
 
-    $roles = array('admin');
+    $roles = array('admin', 'manager', 'user');
 
     $insertRoles = "INSERT INTO role (rolename) VALUES (:role)";
     $stmt = $db->prepare($insertRoles);
@@ -261,16 +261,6 @@ function db_get_users(){
 
     $str = "SELECT * FROM user";
     $stmt = $db->prepare($str);
-    $stmt->execute();
-    return $stmt->fetch();
-}
-
-function db_user_exists($user){
-    global $db;
-
-    $query = "SELECT EXISTS(SELECT id from user WHERE uname=:uname)";
-    $stmt = $db->prepare($query);
-    $stmt->bindParam(":uname", $user)
     $stmt->execute();
     return $stmt->fetch();
 }
