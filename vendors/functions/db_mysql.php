@@ -54,6 +54,36 @@ function db_get_userSalt($user){
     $result = $stmt->fetch();
     return $result['salt'];
 }
+function db_get_firstName($user){
+    global $db;
+
+    $query = "SELECT fname FROM user WHERE uname = :uname";
+    $stmt = $db->prepare($query);
+    $stmt->bindParam(":uname", $user);
+    $stmt->execute();
+    $result = $stmt->fetch();
+    return $result['fname'];
+}
+function db_get_lastName($user){
+    global $db;
+
+    $query = "SELECT lname FROM user WHERE uname = :uname";
+    $stmt = $db->prepare($query);
+    $stmt->bindParam(":uname", $user);
+    $stmt->execute();
+    $result = $stmt->fetch();
+    return $result['lname'];
+}
+function db_get_userRoleName($user){
+    global $db;
+
+    $query = "SELECT r.rolename FROM role r join user u on u.role_id = r.role_id WHERE uname = :uname";
+    $stmt = $db->prepare($query);
+    $stmt->bindParam(":uname", $user);
+    $stmt->execute();
+    $result = $stmt->fetch();
+    return $result['rolename'];
+}
 
 function db_user_login($user, $pass){
     global $db;

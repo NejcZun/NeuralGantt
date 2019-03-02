@@ -4,8 +4,75 @@ include_once 'db_mysql.php';
 function get_user_username(){
 	return base64_decode($_COOKIE['user']);
 }
+function check_if_user_admin_or_mod(){
+	if(db_get_userRoleName(get_user_username()) == 'admin' or db_get_userRoleName(get_user_username()) == 'manager')return true;
+	else return false;
+}
 
-function display_user_navbar_root(){
+function display_user_navigation_home(){
+	echo '<nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item nav-profile">
+            <div class="nav-link">
+              <div class="user-wrapper">
+                <div class="profile-image">
+                  <img src="media/pictures/user.png" alt="profile image">
+                </div>
+                <div class="text-wrapper">
+                  <p class="profile-name">'.db_get_firstName(get_user_username()). ' '. db_get_lastName(get_user_username()).'</p>
+                  <div>
+                    <small class="designation text-muted">'.db_get_userRoleName(get_user_username()).'</small>
+                    <span class="status-indicator online"></span>
+                  </div>
+                </div>
+              </div>';
+              if(check_if_user_admin_or_mod()){
+				  echo '<button class="btn btn-success btn-block">New Project
+                <i class="mdi mdi-plus"></i>
+              </button>';
+			  }
+            echo '</div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.php" style="color:#4a4a4a">
+              <i class="menu-icon mdi mdi-television" style="color:#979797"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+		  <li class="nav-item">
+            <a class="nav-link" href="index.php" style="color:#4a4a4a">
+              <i class="menu-icon mdi mdi-folder-open" style="color:#979797"></i>
+              <span class="menu-title">My Projects</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <i class="menu-icon mdi mdi-folder"></i>
+              <span class="menu-title">Last 4 Projects</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="editor">Project 1</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="editor">Project 2</a>
+                </li>
+				<li class="nav-item">
+                  <a class="nav-link" href="editor">Project 3</a>
+                </li>
+				<li class="nav-item">
+                  <a class="nav-link" href="editor">Project 4</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </nav>';
+}
+
+function display_user_navbar_home(){
 	$user = get_user_username();
 	echo '<ul class="navbar-nav navbar-nav-right">
           <li class="nav-item dropdown">

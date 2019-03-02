@@ -126,7 +126,7 @@ if(!$exists){
 						array('email' => 'user@user.com',
                             'uname' => 'user',
                             'password' => hash_pbkdf2('sha3-256', 'user', 'userSalt', 3),
-                            'salt' => 'adminSalt',
+                            'salt' => 'userSalt',
                             'fname' => 'User',
                             'lname' => 'Sysuser',
                             'role_id' => 3 ) 

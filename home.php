@@ -35,74 +35,17 @@
           </li>
         </ul>
         <?php include_once 'vendors/functions/menu.php'; 
-			display_user_navbar_root();
+			display_user_navbar_home();
 		?>
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
           <span class="mdi mdi-menu"></span>
         </button>
       </div>
     </nav>
-    <!-- partial -->
-	<!-- sliding dash -->
     <div class="container-fluid page-body-wrapper">
-      <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        <ul class="nav">
-          <li class="nav-item nav-profile">
-            <div class="nav-link">
-              <div class="user-wrapper">
-                <div class="profile-image">
-                  <img src="media/pictures/user.png" alt="profile image">
-                </div>
-                <div class="text-wrapper">
-                  <p class="profile-name">User Name and Surname</p>
-                  <div>
-                    <small class="designation text-muted">Title</small>
-                    <span class="status-indicator online"></span>
-                  </div>
-                </div>
-              </div>
-              <button class="btn btn-success btn-block">New Project
-                <i class="mdi mdi-plus"></i>
-              </button>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="index.php" style="color:#4a4a4a">
-              <i class="menu-icon mdi mdi-television" style="color:#979797"></i>
-              <span class="menu-title">Dashboard</span>
-            </a>
-          </li>
-		  <li class="nav-item">
-            <a class="nav-link" href="index.php" style="color:#4a4a4a">
-              <i class="menu-icon mdi mdi-folder-open" style="color:#979797"></i>
-              <span class="menu-title">My Projects</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <i class="menu-icon mdi mdi-folder"></i>
-              <span class="menu-title">Last 4 Projects</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item">
-                  <a class="nav-link" href="editor">Project 1</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="editor">Project 2</a>
-                </li>
-				<li class="nav-item">
-                  <a class="nav-link" href="editor">Project 3</a>
-                </li>
-				<li class="nav-item">
-                  <a class="nav-link" href="editor">Project 4</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-        </ul>
-      </nav>
+      <?php include_once 'vendors/functions/menu.php';
+		display_user_navigation_home();
+	  ?>
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
