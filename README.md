@@ -17,6 +17,7 @@
 - [ ] On project messaging
 - [ ] @mentions on messages
 - [ ] Notifications on @mentions
+- [ ] Forget password PHP Mailer
 
 ### Avtorja:
 - Nejc Žun
