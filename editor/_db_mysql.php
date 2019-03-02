@@ -115,7 +115,21 @@ if(!$exists){
                             'salt' => 'adminSalt',
                             'fname' => 'Admin',
                             'lname' => 'Sysadmin',
-                            'role_id' => 1 ) 
+                            'role_id' => 1 ),
+						array('email' => 'manager@manager.com',
+                            'uname' => 'manager',
+                            'password' => hash_pbkdf2('sha3-256', 'manager', 'managerSalt', 3),
+                            'salt' => 'managerSalt',
+                            'fname' => 'Manager',
+                            'lname' => 'Sysmanager',
+                            'role_id' => 2 ),
+						array('email' => 'user@user.com',
+                            'uname' => 'user',
+                            'password' => hash_pbkdf2('sha3-256', 'user', 'userSalt', 3),
+                            'salt' => 'adminSalt',
+                            'fname' => 'User',
+                            'lname' => 'Sysuser',
+                            'role_id' => 3 ) 
                         );
         
         $insertUsers = "INSERT INTO user (email, uname, password, salt, fname, lname, role_id) VALUES (:email, :uname, :password, :salt, :fname, :lname, :role_id)";

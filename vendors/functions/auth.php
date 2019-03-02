@@ -3,11 +3,6 @@ include_once('db_mysql.php');
 if(isset($_POST['username']) && isset($_POST['password'])){
 	user_login_attempt();		
 }
-
-
-
-
-
 function user_login_attempt(){
 	if(db_user_exists($_POST['username'])) {
         if(db_user_login($_POST['username'], $_POST['password'])){

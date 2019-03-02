@@ -1,4 +1,3 @@
-<?php include 'vendors/functions/auth.php'; user_has_cookie_rederect(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,7 +20,9 @@
           <div class="col-lg-4 mx-auto">
             <div class="auto-form-wrapper">
 			<h2 class="text-center mb-4">Login</h2>
-			<?php include_once 'vendors/functions/auth.php'; ?>
+			<?php include_once 'vendors/functions/auth.php'; 
+			user_has_cookie_rederect();
+			?>
               <form action="./login.php" method="POST">
 			    <div class="form-group">
                     <div class="input-group">
