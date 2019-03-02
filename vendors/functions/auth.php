@@ -19,7 +19,7 @@ function user_login_attempt(){
         }
     }else wrong_username_or_pass();
 }
-
+/* valid cookie on signup.php and login.php*/
 function user_has_cookie_rederect(){
 	if(isset($_COOKIE['user'])){
 		$user=base64_decode($_COOKIE['user']);
@@ -29,8 +29,10 @@ function user_has_cookie_rederect(){
 			setcookie("user", "", time()-3600);
 			echo '<script>window.location.replace("index.php");</script>';
 		}
+	}else{
 	}
 }
+/* valid cookie on home.php*/
 function user_has_valid_cookie(){
 	if(isset($_COOKIE['user'])){
 		$user=base64_decode($_COOKIE['user']);
@@ -38,8 +40,11 @@ function user_has_valid_cookie(){
 			setcookie("user", "", time()-3600);
 			echo '<script>window.location.replace("index.php");</script>';
 		}
+	}else{
+		echo '<script>window.location.replace("index.php");</script>';
 	}
 }
+/* valid cookie on index.php*/
 function user_has_valid_cookie_index(){
 	if(isset($_COOKIE['user'])){
 		$user=base64_decode($_COOKIE['user']);
@@ -50,9 +55,9 @@ function user_has_valid_cookie_index(){
 		}
 	}
 }
+/* login error* */
 function wrong_username_or_pass(){
-	echo '
-			<div class="col-lg-12 mx-auto">
+	echo '<div class="col-lg-12 mx-auto">
 				<div class="alert alert-danger">
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<i class="mdi mdi-close"></i>
