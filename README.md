@@ -12,6 +12,11 @@
 - [ ] Neural network to project view
 - [ ] Alpha version
 
+### If time:
+- [ ] On project messaging
+- [ ] @mentions on messages
+- [ ] Notifications on @mentions
+
 ### Avtorja:
 - Nejc Žun
 - Gregor Černak
