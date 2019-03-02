@@ -3,6 +3,10 @@ include_once('db_mysql.php');
 if(isset($_POST['username']) && isset($_POST['password'])){
 	user_login_attempt();		
 }
+function get_username(){
+	return base64_decode($_COOKIE['user']);
+}
+
 function user_login_attempt(){
 	if(db_user_exists($_POST['username'])) {
         if(db_user_login($_POST['username'], $_POST['password'])){
@@ -53,6 +57,35 @@ function user_has_valid_cookie_index(){
 		}else{
 			setcookie("user", "", time()-3600);
 		}
+	}
+}
+function check_if_user_mod_or_above(){
+	if(db_get_userRoleName(get_username()) == 'admin' or db_get_userRoleName(get_username()) == 'manager')return true;
+	else return false;
+}
+/* valid cookie anywhere in /project*/
+function user_has_valid_cookie_project(){
+	if(isset($_COOKIE['user'])){
+		$user=base64_decode($_COOKIE['user']);
+		if(!db_user_exists($user)){
+			setcookie("user", "", time()-3600);
+			echo '<script>window.location.replace("../index.php");</script>';
+		}
+	}else{
+		echo '<script>window.location.replace("../index.php");</script>';
+	}
+}
+function user_has_valid_cookie_project_create(){
+	if(isset($_COOKIE['user'])){
+		$user=base64_decode($_COOKIE['user']);
+		if(!db_user_exists($user)){
+			setcookie("user", "", time()-3600);
+			echo '<script>window.location.replace("../index.php");</script>';
+		}else{
+			if(!check_if_user_mod_or_above())echo '<script>window.location.replace("index.php");</script>';
+		}
+	}else{
+		echo '<script>window.location.replace("../index.php");</script>';
 	}
 }
 /* login error* */

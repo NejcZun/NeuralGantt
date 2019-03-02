@@ -74,6 +74,16 @@ function db_get_lastName($user){
     $result = $stmt->fetch();
     return $result['lname'];
 }
+function db_get_userId($user){
+    global $db;
+
+    $query = "SELECT id FROM user WHERE uname = :uname";
+    $stmt = $db->prepare($query);
+    $stmt->bindParam(":uname", $user);
+    $stmt->execute();
+    $result = $stmt->fetch();
+    return $result['id'];
+}
 function db_get_userRoleName($user){
     global $db;
 

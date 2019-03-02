@@ -26,12 +26,12 @@
       <div class="navbar-menu-wrapper d-flex align-items-center">
         <ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
           <li class="nav-item active">
-            <a href="index.php" class="nav-link">Home
+            <a href="home.php" class="nav-link">Home
             </a>
           </li>
           <li class="nav-item">
-            <a href="editor" class="nav-link">
-              <i class="mdi mdi-folder"></i>Project</a>
+            <a href="project/index.php" class="nav-link">
+              <i class="mdi mdi-folder-multiple"></i>Projects</a>
           </li>
         </ul>
         <?php include_once 'vendors/functions/menu.php'; 

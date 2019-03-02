@@ -16251,6 +16251,22 @@ ul {
     -moz-osx-font-smoothing: grayscale;
 	transition: visibility 0s 2s, opacity 2s linear;
 }
+.alert.alert-success{
+	box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(76, 175, 80, 0.4)!important;
+	background-color: #00ce68!important;
+    color: #ffffff!important;
+	border-radius: 3px;
+    position: relative;
+    padding: 20px 15px;
+    line-height: 20px;
+	-webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+	transition: visibility 0s 2s, opacity 2s linear;
+}
+.alert.alert-success a{
+	text-decoration:none;
+	color:#a72abd;
+}
 /* Start of home page */
 .home-page-left-box{
 	background-color:#5983e8;
