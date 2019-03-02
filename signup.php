@@ -41,7 +41,7 @@
 		</div>
           <div class="col-lg-4 mx-auto">
             <div class="auto-form-wrapper">
-			            <h2 class="text-center mb-4">Register</h2>
+			            <h2 class="text-center mb-4">Sign Up</h2>
               <form action="#">
 			  <div class="row">
                       <div class="col-md-6">

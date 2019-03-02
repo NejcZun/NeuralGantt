@@ -20,11 +20,40 @@
 			</ul>
 			</div>
 			<div class="col-lg-6 home-page-right-box">
+				<div class="home-page-card">
+					<div class="home-page-head">
+						<img class="logo-icon" src="media/pictures/logo-mini.svg"/>
+						<a href="login.php"><button class="home-page-button outline">Log in</button></a>
+					</div>
+					<h1>Start making contributions to projects today!</h1>
+					<p>Join right now.</p>
+					<a href="signup.php"><button class="home-page-button primary block">Sign up</button></a>
+					<a href="login.php"><button class="home-page-button outline block">Log in</button></a>
+				</div>
 			</div>
 	</div>
     <div class="row responsive-phone-view" style="display:none;">
-		<div class="col-lg-6 home-page-right-box"></div>
-		<div class="col-lg-6 home-page-left-box"></div>
+		<div class="col-lg-6 home-page-right-box">
+				<div class="home-page-card">
+					<div class="home-page-head">
+						<img class="logo-icon" src="media/pictures/logo-mini.svg"/>
+						<a href="login.php"><button class="home-page-button outline">Log in</button></a>
+					</div>
+					<h1>Start making contributions to projects today!</h1>
+					<p>Join right now.</p>
+					<a href="signup.php"><button class="home-page-button primary block">Sign up</button></a>
+					<a href="login.php"><button class="home-page-button outline block">Log in</button></a>
+				</div>
+			</div>
+		<div class="col-lg-6 home-page-left-box">
+			<div class="home-page-center">
+				<ul>
+					<li><i class="mdi mdi-chart-line mr-1" aria-hidden="true"></i><span>A new inovative way to track projects!</span></li>
+					<li><i class="mdi mdi-clock-fast mr-1" aria-hidden="true"></i><span>Fast and responsive.</span></li>
+					<li><i class="mdi mdi-account-multiple mr-1" aria-hidden="true"></i><span>User friendly.</span></li>
+				</ul>
+			</div>
+		</div>
 	</div>
   <footer class="footer" style="background:white; border-top: 1px solid white;">
     <div class="container-fluid clearfix">
