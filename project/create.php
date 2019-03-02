@@ -64,7 +64,7 @@ user_has_valid_cookie_project_create();
                   <div class="card">
                     <div class="card-body">
                       <h3 class="card-title" style="font-size:24px;">Create new project</h3>
-                      <form method="POST" action="./index.php">
+                      <form method="POST" action="./create.php">
                         <div class="form-group">
                           <label for="project_name">Project name</label>
                           <input name="project_name" type="project_name" class="form-control" id="project_name" placeholder="Enter project name" required>

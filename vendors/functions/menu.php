@@ -276,7 +276,7 @@ function display_user_navbar_home(){
               <a class="dropdown-item" href="">
                 Check Inbox
               </a>
-              <a class="dropdown-item" href="../logout.php">
+              <a class="dropdown-item" href="logout.php">
                 Sign Out
               </a>
             </div>

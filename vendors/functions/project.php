@@ -30,7 +30,7 @@ function project_created_message(){
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<i class="mdi mdi-close"></i>
 					</button>
-					<span><b> Project created - </b> View your projects <a href="manage.php">here</a>.</span>
+					<span><b> Project created - </b> View your projects <a href="index.php">here</a>.</span>
 				</div>
 		</div>';
 }
