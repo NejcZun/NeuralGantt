@@ -155,7 +155,30 @@ if(!$exists){
         }
 }
 
-date_default_timezone_set("UTC");
+/* Projects */ 
+$exists = tableExists($db, "project");
+
+if(!$exists){
+    $db->exec("CREATE TABLE project (
+        project_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+        project_name VARCHAR(100) NOT NULL,
+		user_id INTEGER,
+        FOREIGN KEY (user_id) REFERENCES user(id)
+    );");
+}
+
+$exists = tableExists($db, "on_board");
+if(!$exists){
+    $db->exec("CREATE TABLE on_board (
+        on_board_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+		user_id INTEGER,
+		project_id INTEGER,
+		FOREIGN KEY (project_id) REFERENCES project(project_id),
+        FOREIGN KEY (user_id) REFERENCES user(id)
+    );");
+}
+
+date_default_timezone_set("UTC+1");
 
 function db_get_max_ordinal($parent) {
     global $db;
