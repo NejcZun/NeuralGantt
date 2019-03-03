@@ -2,6 +2,14 @@
 require_once 'db_mysql.php';
 
 function admin_user_display(){
+	/*on completed action as edit or delete */
+	if(isset($_POST['delete']) or isset($_POST['edit'])){
+		if(isset($_POST['delete'])){
+			delete_user($_POST['delete']);
+		}
+	}
+	
+	
 	if(isset($_GET['delete']) or isset($_GET['edit'])){
 		if(isset($_GET['edit'])){
 			if(db_user_exists_byId($_GET['edit'])){
@@ -20,6 +28,53 @@ function admin_user_display(){
 	}else{
 		display_users_admin();
 	}
+}
+
+function delete_user($id){
+	global $db;
+	
+	/*deletes from links */
+	$stmt = $db->prepare("DELETE FROM link WHERE user_id = :id");
+	$stmt->bindParam(':id', $id);
+	$stmt->execute();
+	
+	/*deletes all tasks from deleted projects */
+	$str = "SELECT project_id from project where user_id = :id";
+    $stmt = $db->prepare($str);
+	$stmt->bindParam(':id', $id);
+    $stmt->execute();
+	while ($row = $stmt->fetch()) {
+		$delete = $db->prepare("DELETE FROM link WHERE project_id = :project_id");
+		$delete->bindParam(':project_id', $row['project_id']);
+		$delete->execute();
+		
+		$delete2 = $db->prepare("DELETE FROM on_board WHERE project_id = :project_id");
+		$delete2->bindParam(':project_id', $row['project_id']);
+		$delete2->execute();
+	}
+	/* deletes from tasks */
+	
+	$stmt = $db->prepare("DELETE FROM task WHERE user_id = :id");
+	$stmt->bindParam(':id', $id);
+	$stmt->execute();
+	
+	/*deletes all projects */
+	
+	$stmt = $db->prepare("DELETE FROM project WHERE user_id = :id");
+	$stmt->bindParam(':id', $id);
+	$stmt->execute();
+	
+	/*deletes from on_board */
+	
+	$stmt = $db->prepare("DELETE FROM on_board WHERE user_id = :id");
+	$stmt->bindParam(':id', $id);
+	$stmt->execute();
+	
+	
+	/*deletes from users */
+	$stmt = $db->prepare("DELETE FROM user WHERE id = :id");
+	$stmt->bindParam(':id', $id);
+	$stmt->execute();
 }
 
 function display_users_admin(){
@@ -92,7 +147,8 @@ function display_users_admin_delete($id){
 				 <td data-title="Email" style="vertical-align:middle;">'.$row['email'].'</td>
 				 <td data-title="Role" style="vertical-align:middle;">'.ucfirst($row['rolename']).'</td>
 				 <td data-title="Action" class="material-table-td-action">
-				 	<a href="users.php?delete='.$row['id'].'" style="text-decoration:none;"><button type="button" class="btn btn-danger btn-fw" style="min-width:100px;"><i class="mdi mdi-delete"></i>Yes</button>
+				 <form method="POST" action="users.php">
+				 	<button type="submit" class="btn btn-danger btn-fw" style="min-width:100px;" name="delete" value="'.$row['id'].'"><i class="mdi mdi-delete"></i>Yes</button></form>
 					<a href="users.php" style="text-decoration:none;"><button type="button" class="btn btn-success btn-fw" style="min-width:100px;"><i class="mdi mdi-back"></i>No</button>
 				  </td>
 				</tr>';
