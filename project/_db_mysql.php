@@ -288,5 +288,18 @@ function db_get_users(){
     $stmt->execute();
     return $stmt->fetch();
 }
+function cookie_get_username(){
+	return base64_decode($_COOKIE['user']);
+}
+function db_get_usersId($user){
+    global $db;
+
+    $query = "SELECT id FROM user WHERE uname = :uname";
+    $stmt = $db->prepare($query);
+    $stmt->bindParam(":uname", $user);
+    $stmt->execute();
+    $result = $stmt->fetch();
+    return $result['id'];
+}
 
 ?>

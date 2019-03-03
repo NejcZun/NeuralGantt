@@ -17,6 +17,20 @@ user_has_valid_cookie_project();
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/material-table.css">
   <link rel="shortcut icon" href="../media/pictures/logo.png" />
+  <!-- editor -->
+  <link rel="stylesheet" href="../media/layout.css">
+  <script src="../js/jquery-1.9.1.min.js" type="text/javascript"></script>
+  <script src="../js/gantt.min.js" type="text/javascript"></script>
+  <style>
+	.gantt_default_corner  > div:nth-child(4) {
+	    background: rgb(243, 243, 243)!important;
+		color: rgb(243, 243, 243)!important;
+		content: 'Burek'!important;
+	}
+	.profile-name{
+		font-family: "Poppins", sans-serif;
+	}
+</style>
 </head>
 <body>
   <div class="container-scroller">
@@ -58,7 +72,12 @@ user_has_valid_cookie_project();
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
-			<?php display_user_projects(); ?>
+			<?php 
+			parent_display_project();
+			?>
+			
+        <div class="clear">
+        </div>
 		</div>
 	     <footer class="footer">
           <div class="container-fluid clearfix">

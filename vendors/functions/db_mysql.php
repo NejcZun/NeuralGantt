@@ -13,16 +13,6 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $db->exec("use `$database`");
 
-function db_get_user($id){
-    global $db;
-
-    $str = "SELECT * FROM user WHERE id = :id";
-    $stmt = $db->prepare($str);
-    $stmt->bindParam(":id", $id);
-    $stmt->execute();
-    return $stmt->fetch();
-}
-
 function db_get_users(){
     global $db;
 
