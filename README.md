@@ -6,14 +6,14 @@
 - [x] Authentication
 - [ ] User Profile (pass reset, view)
 - [ ] Admin 
- - [ ] Users (edit delete)
+ - Users
   - View
   - Edit
   - Delete
-- [ ] Projects
- - View
- - Edit
- - Delete
+ - Projects
+  - View
+  - Edit
+  - Delete
 - [x] Authentication on pages
 - [x] Create projects
 - [x] Responsive project (per user) view
