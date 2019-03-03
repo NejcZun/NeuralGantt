@@ -32,3 +32,8 @@
 ### Avtorja:
 - Nejc Žun
 - Gregor Černak
+
+### How to load database:
+run:
+```~/project/_db_mysql.php```
+
