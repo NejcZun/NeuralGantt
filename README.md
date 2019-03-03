@@ -11,9 +11,9 @@
   - Edit
   - Delete
 - [ ] Projects
-  - View
-  - Edit
-  - Delete
+ - View
+ - Edit
+ - Delete
 - [x] Authentication on pages
 - [x] Create projects
 - [x] Responsive project (per user) view
