@@ -2,9 +2,9 @@
 ### To do list:
 - [x] Main page
 - [x] Login
-- [ ] Registration (Grega WIP)
+- [ ] Registration (Grega WIP) <= NEXT
 - [x] Authentication
-- [ ] User Profile (pass reset, view)
+- [ ] User Profile (view) <= NEXT
 - [ ] Admin 
  - Users
    - View (done)
@@ -15,6 +15,7 @@
    - Edit
    - Delete (done)
 - [x] Authentication on pages
+- [x] View Projects
 - [x] Create projects
 - [x] Responsive project (per user) view
 - [ ] Manage projects (change name, add people...)
@@ -22,6 +23,9 @@
 - [ ] UI tweaks
 - [ ] Neural network to project view
 - [ ] Alpha version
+
+### Low Priority:
+- [ ] User Profile (reset pass)
 
 ### If time:
 - [ ] On project messaging
