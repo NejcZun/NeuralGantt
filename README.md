@@ -9,11 +9,11 @@
  - Users
    - View (done)
    - Edit
-   - Delete
+   - Delete (done)
  - Projects
    - View (done)
    - Edit
-   - Delete
+   - Delete (done)
 - [x] Authentication on pages
 - [x] Create projects
 - [x] Responsive project (per user) view
@@ -32,3 +32,8 @@
 ### Avtorja:
 - Nejc Žun
 - Gregor Černak
+
+### How to load database:
+run:
+```~/project/_db_mysql.php```
+
