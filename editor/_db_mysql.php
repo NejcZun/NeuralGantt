@@ -164,6 +164,8 @@ if(!$exists){
     $db->exec("CREATE TABLE project (
         project_id INTEGER PRIMARY KEY AUTO_INCREMENT,
         project_name VARCHAR(100) NOT NULL,
+		start DATETIME,
+		end DATETIME,
 		user_id INTEGER,
         FOREIGN KEY (user_id) REFERENCES user(id)
     );");

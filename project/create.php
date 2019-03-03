@@ -56,7 +56,7 @@ user_has_valid_cookie_project_create();
       <div class="main-panel">
         <div class="content-wrapper">
 			<?php include_once '../vendors/functions/project.php'; 
-			if(isset($_POST['project_name'])) add_project($_POST['project_name']);
+			if(isset($_POST['project_name'])) add_project($_POST['project_name'], $_POST['project_end']);
 			?>
 			<div class="col-md-6 d-flex align-items-stretch grid-margin" style="margin:auto;">
               <div class="row flex-grow">
@@ -67,7 +67,11 @@ user_has_valid_cookie_project_create();
                       <form method="POST" action="./create.php">
                         <div class="form-group">
                           <label for="project_name">Project name</label>
-                          <input name="project_name" type="project_name" class="form-control" id="project_name" placeholder="Enter project name" required>
+                          <input name="project_name" type="text" class="form-control" id="project_name" placeholder="Enter project name" required>
+                        </div>
+						<div class="form-group">
+                          <label for="project_name">Project due date</label>
+                          <input name="project_end" type="date" class="form-control" id="project_name" placeholder="Due date" required>
                         </div>
                         <button type="submit" class="btn btn-success mr-2">Create</button>
                       </form>
