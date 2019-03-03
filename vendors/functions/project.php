@@ -2,25 +2,97 @@
 require_once 'db_mysql.php';
 
 function parent_display_project(){
+	
+	/*processing pre-defined actions */
+	if(isset($_POST['delete'])){
+		if(verify_user_profile($_POST['delete'])){
+			delete_project($_POST['delete']);
+		}
+	}
 	if(isset($_GET['project'])){
 		display_gantt();
+	}else if(isset($_GET['edit'])){
+		if(!verify_user_profile($_GET['edit'])){ /* if user doesnt own the project and not admin */
+			echo '<script>window.location.replace("index.php");</script>';
+		}else{
+			
+		}
+		
+	}else if(isset($_GET['delete'])){
+		if(!verify_user_profile($_GET['delete'])){ /* if user doesnt own the project and not admin */
+			echo '<script>window.location.replace("index.php");</script>';
+		}else{
+			display_project_delete_page();
+		}
+		
 	}else{
 		display_user_projects(); 
 	}
 	
 }
 
+function delete_project($id){
+	global $db;
+	/*deletes from links */
+	$stmt = $db->prepare("DELETE FROM link WHERE project_id = :id");
+	$stmt->bindParam(':id', $id);
+	$stmt->execute();
+	
+	/* deletes from tasks */
+	
+	$stmt = $db->prepare("DELETE FROM task WHERE project_id = :id");
+	$stmt->bindParam(':id', $id);
+	$stmt->execute();
+	
+	/*deletes from on_board */
+	
+	$stmt = $db->prepare("DELETE FROM on_board WHERE project_id = :id");
+	$stmt->bindParam(':id', $id);
+	$stmt->execute();
+	
+	
+	/*deletes all projects */
+	
+	$stmt = $db->prepare("DELETE FROM project WHERE project_id = :id");
+	$stmt->bindParam(':id', $id);
+	$stmt->execute();
+	
+	
+}
 
 
 
-function get_user_id_project(){
+
+/* checks if user is manager -> if he is a manager checks if he owns the project or if user is admin than it's oke*/
+function verify_user_profile($project_id){
+	$user_id = db_get_userId(get_user_cookie_project());
+	if(check_if_user_owner($user_id, $project_id) or check_if_user_admin()){
+		return true;
+	}else{
+		return false;
+	}
+}
+function check_if_user_owner($user_id, $project_id){
+	global $db;
+    $query = "SELECT EXISTS(SELECT * from project WHERE project_id = {$project_id} AND user_id={$user_id}) AS checkExists";
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+    $result = $stmt->fetch();
+    if($result['checkExists'] == 1) return true;
+    return false;
+}
+
+function get_user_cookie_project(){
 	return base64_decode($_COOKIE['user']);
 }
+
+
+/* project db */
 function add_project($project_name, $project_end){
 	global $db;
 	$project_start = (new DateTime("now"))->format('Y-m-d H:i:s');
 	$project_end = $project_end. ' 00:00:00';
-	$user_id = db_get_userId(get_user_id_project());
+	$user_id = db_get_userId(get_user_cookie_project());
 	$projects = array(array('user_id' => $user_id,
                         'project_name' => $project_name,
 						'start' =>$project_start,
@@ -115,7 +187,7 @@ function display_user_projects(){
 			echo '<tr>
 				  <td data-title="Name" style="vertical-align:middle;">'.$row['project_name'].'</td>
 				  <td data-title="Open"><a href="index.php?project='.$row['project_id'].'"><button type="button" class="btn btn-primary btn-fw" style="min-width:100px; background-color:#5983e8"><i class="mdi mdi-folder-open"></i>Open</button></a></td>
-				  <td data-title="Manager" style="vertical-align:middle;">'.db_get_userUsername($row['project_id']).'</td>
+				  <td data-title="Manager" style="vertical-align:middle;">'.db_get_userUsername($row['user_id']).'</td>
 				  <td data-title="Status" style="vertical-align:middle;">
 					<div class="progress md-progress" style="height: 20px"><div class="progress-bar" role="progressbar" style="width: '.$progress.'%; height: 20px; background-color:#00ce68 ;" aria-valuenow="'.$progress.'" aria-valuemin="0" aria-valuemax="100">'.$progress.'%</div></div>
 				  </td>
@@ -358,7 +430,84 @@ echo '<div class="hideSkipLink">
 	
 	
 }
-
+function display_project_delete_page(){
+	display_delete_card();
+	get_project_by_id($_GET['delete']);
+	
+}
+function get_project_by_id($id){
+    global $db;
+	$str = "SELECT p.project_id, p.project_name, p.user_id FROM project p join on_board o on o.project_id = p.project_id where p.project_id = {$id}";
+    $stmt = $db->prepare($str);
+    $stmt->execute();
+	if($stmt->rowCount() === 0){
+		invalid_id();
+	}else{
+	/* build the table class below: */
+		echo '<div class="table-responsive-vertical shadow-z-1">
+			  <table id="table" class="table table-hover table-mc-light-blue">
+				<thead>
+					<tr>
+						<th>Project name</th>
+						<th>Open</th>
+						<th>Manager</th>
+						<th>Status</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>';
+		
+		while ($row = $stmt->fetch()) {
+			$progress=round(get_progress_bar($row['project_id'])*100);
+			echo '<tr>
+				  <td data-title="Name" style="vertical-align:middle;">'.$row['project_name'].'</td>
+				  <td data-title="Open"><a href="index.php?project='.$row['project_id'].'"><button type="button" class="btn btn-primary btn-fw" style="min-width:100px; background-color:#5983e8"><i class="mdi mdi-folder-open"></i>Open</button></a></td>
+				  <td data-title="Manager" style="vertical-align:middle;">'.db_get_userUsername($row['project_id']).'</td>
+				  <td data-title="Status" style="vertical-align:middle;">
+					<div class="progress md-progress" style="height: 20px"><div class="progress-bar" role="progressbar" style="width: '.$progress.'%; height: 20px; background-color:#00ce68 ;" aria-valuenow="'.$progress.'" aria-valuemin="0" aria-valuemax="100">'.$progress.'%</div></div>
+				  </td>
+				  <td data-title="Action">
+				  <form method="POST" action="index.php">
+					<button type="submit" name="delete" class="btn btn-danger btn-fw" style="min-width:100px;" value="'.$row['project_id'].'"><i class="mdi mdi-delete"></i>Yes</button>
+					<a href="index.php" style="text-decoration:none;"><button type="button" class="btn btn-success btn-fw" style="min-width:100px;">No</button>
+				  </form>
+				  </td>
+				</tr>';
+		}
+		  echo '</tbody>
+			</table>
+		</div>';
+	}
+}
+function display_delete_card(){
+	echo '<div class="col-md-6 d-flex align-items-stretch grid-margin" style="margin:auto; margin-bottom: 40px;">
+              <div class="row flex-grow">
+                <div class="col-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <h3 class="card-title" style="font-size:24px;">Warning:</h3>
+					  <p>By deleting this project you are also deleting all the links and tasks.</p>
+					  <p>Are you sure you want to continue?</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>';
+}
+function invalid_id(){
+	echo '<div class="col-md-6 d-flex align-items-stretch grid-margin" style="margin:auto; margin-bottom: 40px;">
+              <div class="row flex-grow">
+                <div class="col-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <h3 class="card-title" style="font-size:24px;">Error: Invalid ID</h3>
+					  <p>Please check that you own the project or contact your administrator for support.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>';
+}
 
 
 ?>

@@ -138,7 +138,7 @@ function display_users_admin_delete($id){
 						<th>Username</th>
 						<th>Email</th>
 						<th>Role</th>
-						<th>Action</th>
+						<th>Delete?</th>
 					</tr>
 				</thead>
 				<tbody>';
@@ -152,9 +152,9 @@ function display_users_admin_delete($id){
 				 <td data-title="Role" style="vertical-align:middle;">'.ucfirst($row['rolename']).'</td>
 				 <td data-title="Action" class="material-table-td-action">
 				 <form method="POST" action="users.php">
-				 	<button type="submit" class="btn btn-danger btn-fw" style="min-width:100px;" name="delete" value="'.$row['id'].'"><i class="mdi mdi-delete"></i>Yes</button></form>
+				 	<button type="submit" class="btn btn-danger btn-fw" style="min-width:100px;" name="delete" value="'.$row['id'].'"><i class="mdi mdi-delete"></i>Yes</button>
 					<a href="users.php" style="text-decoration:none;"><button type="button" class="btn btn-success btn-fw" style="min-width:100px;"><i class="mdi mdi-back"></i>No</button>
-				  </td>
+				  </form></td>
 				</tr>';
 		}
 		  echo '</tbody>

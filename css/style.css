@@ -16387,3 +16387,6 @@ ul {
 	-moz-box-shadow: 0 1px 2px rgba(0,0,0,0.15);
 	box-shadow: 0 1px 2px rgba(0,0,0,0.15);
 }
+.color-fix-nav:hover{
+	color: #000!important;
+}

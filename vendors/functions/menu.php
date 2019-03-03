@@ -60,20 +60,9 @@ function display_user_navigation_home(){
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item">
-                  <a class="nav-link" href="editor">Project 1</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="editor">Project 2</a>
-                </li>
-				<li class="nav-item">
-                  <a class="nav-link" href="editor">Project 3</a>
-                </li>
-				<li class="nav-item">
-                  <a class="nav-link" href="editor">Project 4</a>
-                </li>
-              </ul>
+              <ul class="nav flex-column sub-menu">';
+                display_last_four_home(db_get_userId(get_user_username()));
+              echo'</ul>
             </div>
           </li>';
 		 if(check_if_user_admin()){
@@ -124,26 +113,15 @@ function display_user_navigation_project(){
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic" style="color:#979797;">
               <i class="menu-icon mdi mdi-folder"></i>
-              <span class="menu-title">Last 4 Projects</span>
+              <span class="menu-title" style="color:#4a4a4a">Last 4 Projects</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item">
-                  <a class="nav-link" href="editor">Project 1</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="editor">Project 2</a>
-                </li>
-				<li class="nav-item">
-                  <a class="nav-link" href="editor">Project 3</a>
-                </li>
-				<li class="nav-item">
-                  <a class="nav-link" href="editor">Project 4</a>
-                </li>
-              </ul>
+              <ul class="nav flex-column sub-menu">';
+                display_last_four_project(db_get_userId(get_user_username()));
+              echo'</ul>
             </div>
           </li>';
 		  if(check_if_user_admin()){
@@ -194,26 +172,15 @@ function display_user_navigation_admin(){
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic" style="color:#979797;">
               <i class="menu-icon mdi mdi-folder"></i>
-              <span class="menu-title">Last 4 Projects</span>
+              <span class="menu-title" style="color:#4a4a4a">Last 4 Projects</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item">
-                  <a class="nav-link" href="editor">Project 1</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="editor">Project 2</a>
-                </li>
-				<li class="nav-item">
-                  <a class="nav-link" href="editor">Project 3</a>
-                </li>
-				<li class="nav-item">
-                  <a class="nav-link" href="editor">Project 4</a>
-                </li>
-              </ul>
+              <ul class="nav flex-column sub-menu">';
+                display_last_four_admin(db_get_userId(get_user_username()));
+              echo'</ul>
             </div>
           </li>';
 	  if(check_if_user_admin()){
@@ -674,6 +641,39 @@ function display_user_navbar_admin(){
             </div>
           </li>
         </ul>';
+}
+function display_last_four_home($user_id){
+	global $db;
+	$str = "SELECT p.project_id, p.project_name from project p join on_board o on o.project_id = p.project_id where o.user_id = {$user_id}";
+    $stmt = $db->prepare($str);
+    $stmt->execute();
+	while ($row = $stmt->fetch()) {
+		echo '<li class="nav-item">
+                  <a class="nav-link color-fix-nav" href="project/index.php?project='.$row['project_id'].'">'.$row['project_name'].'</a>
+                </li>';
+	}
+}
+function display_last_four_project($user_id){
+	global $db;
+	$str = "SELECT p.project_id, p.project_name from project p join on_board o on o.project_id = p.project_id where o.user_id = {$user_id}";
+    $stmt = $db->prepare($str);
+    $stmt->execute();
+	while ($row = $stmt->fetch()) {
+		echo '<li class="nav-item">
+                  <a class="nav-link color-fix-nav" href="../project/index.php?project='.$row['project_id'].'" style="color:#4a4a4a">'.$row['project_name'].'</a>
+                </li>';
+	}
+}
+function display_last_four_admin($user_id){
+	global $db;
+	$str = "SELECT p.project_id, p.project_name from project p join on_board o on o.project_id = p.project_id where o.user_id = {$user_id}";
+    $stmt = $db->prepare($str);
+    $stmt->execute();
+	while ($row = $stmt->fetch()) {
+		echo '<li class="nav-item">
+                  <a class="nav-link color-fix-nav" href="../project/index.php?project='.$row['project_id'].'" style="color:#4a4a4a">'.$row['project_name'].'</a>
+                </li>';
+	}
 }
 
 /* display addition to project ul bar top left - blue */
