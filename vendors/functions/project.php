@@ -111,12 +111,13 @@ function display_user_projects(){
 				<tbody>';
 		
 		while ($row = $stmt->fetch()) {
+			$progress=round(get_progress_bar($row['project_id'])*100);
 			echo '<tr>
 				  <td data-title="Name" style="vertical-align:middle;">'.$row['project_name'].'</td>
 				  <td data-title="Open"><a href="index.php?project='.$row['project_id'].'"><button type="button" class="btn btn-primary btn-fw" style="min-width:100px; background-color:#5983e8"><i class="mdi mdi-folder-open"></i>Open</button></a></td>
 				  <td data-title="Manager" style="vertical-align:middle;">'.db_get_userUsername($row['project_id']).'</td>
 				  <td data-title="Status" style="vertical-align:middle;">
-					<div class="progress md-progress" style="height: 20px"><div class="progress-bar" role="progressbar" style="width: 25%; height: 20px; background-color:#00ce68 ;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div></div>
+					<div class="progress md-progress" style="height: 20px"><div class="progress-bar" role="progressbar" style="width: '.$progress.'%; height: 20px; background-color:#00ce68 ;" aria-valuenow="'.$progress.'" aria-valuemin="0" aria-valuemax="100">'.$progress.'%</div></div>
 				  </td>
 				  <td data-title="Action">';
 				  if(check_if_user_admin_or_mod()){
@@ -158,12 +159,13 @@ function display_user_projects_admin(){
 				<tbody>';
 		
 		while ($row = $stmt->fetch()) {
+			$progress=round(get_progress_bar($row['project_id'])*100);
 			echo '<tr>
 				  <td data-title="Name" style="vertical-align:middle;">'.$row['project_name'].'</td>
 				  <td data-title="Open"><a href="../project/index.php?project='.$row['project_id'].'"><button type="button" class="btn btn-primary btn-fw" style="min-width:100px; background-color:#5983e8"><i class="mdi mdi-folder-open"></i>Open</button></a></td>
 				  <td data-title="Manager" style="vertical-align:middle;">'.db_get_userUsername($row['project_id']).'</td>
 				  <td data-title="Status" style="vertical-align:middle;">
-					<div class="progress md-progress" style="height: 20px"><div class="progress-bar" role="progressbar" style="width: 25%; height: 20px; background-color:#00ce68 ;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div></div>
+					<div class="progress md-progress" style="height: 20px"><div class="progress-bar" role="progressbar" style="width: '.$progress.'%; height: 20px; background-color:#00ce68 ;" aria-valuenow="'.$progress.'" aria-valuemin="0" aria-valuemax="100">'.$progress.'%</div></div>
 				  </td>
 				  <td data-title="Action">
 					<a href="../project/index.php?edit='.$row['project_id'].'" style="text-decoration:none;"><button type="button" class="btn btn-secondary btn-fw" style="min-width:100px;"><i class="mdi mdi-pencil"></i>Edit</button>
@@ -176,8 +178,17 @@ function display_user_projects_admin(){
 		</div>';
 	}
 }
+function get_progress_bar($id){
+	global $db;
+	$query = "SELECT (select sum(complete) from task where project_id = {$id} group by project_id) / (count(*)*100) as progress from task where project_id = {$id} group by project_id";
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+    $result = $stmt->fetch();
+    return $result['progress'];
+	
+}
 function has_no_projects(){
-	echo '<div class="col-md-6 d-flex align-items-stretch grid-margin" style="margin:auto;height:100vh;">
+	echo '<div class="col-md-6 d-flex align-items-stretch grid-margin" style="margin:auto;">
               <div class="row flex-grow">
                 <div class="col-12">
                   <div class="card">
@@ -189,8 +200,6 @@ function has_no_projects(){
             </div>
          </div>';
 }
-
-
 
 /* GANTT: */
 function display_gantt(){
