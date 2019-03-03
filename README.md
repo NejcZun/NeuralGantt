@@ -7,11 +7,11 @@
 - [ ] User Profile (pass reset, view)
 - [ ] Admin 
  - Users
-   - View
+   - View (done)
    - Edit
    - Delete
  - Projects
-   - View
+   - View (done)
    - Edit
    - Delete
 - [x] Authentication on pages
