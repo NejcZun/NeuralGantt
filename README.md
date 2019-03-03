@@ -5,7 +5,15 @@
 - [ ] Registration (Grega WIP)
 - [x] Authentication
 - [ ] User Profile (pass reset, view)
-- [ ] Admin (manage profiles)
+- [ ] Admin 
+ - Users
+   - View (done)
+   - Edit
+   - Delete
+ - Projects
+   - View (done)
+   - Edit
+   - Delete
 - [x] Authentication on pages
 - [x] Create projects
 - [x] Responsive project (per user) view
