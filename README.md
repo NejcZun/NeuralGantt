@@ -7,13 +7,13 @@
 - [ ] User Profile (pass reset, view)
 - [ ] Admin 
  - [ ] Users (edit delete)
-  - [ ] View
-  - [ ] Edit
-  - [ ] Delete
- - Projects
-  - [x] View
-  - [ ] Edit
-  - [ ] Delete
+  - View
+  - Edit
+  - Delete
+- [ ] Projects
+  - View
+  - Edit
+  - Delete
 - [x] Authentication on pages
 - [x] Create projects
 - [x] Responsive project (per user) view
