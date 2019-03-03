@@ -51,6 +51,10 @@ function delete_user($id){
 		$delete2 = $db->prepare("DELETE FROM on_board WHERE project_id = :project_id");
 		$delete2->bindParam(':project_id', $row['project_id']);
 		$delete2->execute();
+		
+		$delete3 = $db->prepare("DELETE FROM task WHERE project_id = :project_id");
+		$delete3->bindParam(':project_id', $row['project_id']);
+		$delete3->execute();
 	}
 	/* deletes from tasks */
 	
