@@ -1,8 +1,7 @@
 <?php 
 include '../vendors/functions/auth.php'; 
 include '../vendors/functions/menu.php'; 
-include '../vendors/functions/project.php';
-user_has_valid_cookie_project(); 
+user_has_valid_cookie_admin(); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +15,7 @@ user_has_valid_cookie_project();
   <link rel="stylesheet" href="../vendors/css/vendor.bundle.addons.css">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/material-table.css">
-  <link rel="shortcut icon" href="../media/pictures/logo.png" />
+    <link rel="shortcut icon" href="../media/pictures/logo.png" />
 </head>
 <body>
   <div class="container-scroller">
@@ -35,16 +34,20 @@ user_has_valid_cookie_project();
             <a href="../home.php" class="nav-link">Home
             </a>
           </li>
-          <li class="nav-item active">
-            <a href="index.php" class="nav-link">
+          <li class="nav-item">
+            <a href="../project/index.php" class="nav-link">
               <i class="mdi mdi-folder-multiple"></i>My Projects</a>
           </li>
-		  <?php 
-			display_admin_mod_list_item_projects();
+		  <?php
+			display_admin_mod_list_item_admin();
 		  ?>
+		  <li class="nav-item active">
+            <a href="project.php" class="nav-link">
+              <i class="mdi mdi-folder-multiple-outline"></i>All Projects</a>
+          </li>
         </ul>
-        <?php
-			display_user_navbar_project();
+        <?php 
+			display_user_navbar_admin();
 		?>
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
           <span class="mdi mdi-menu"></span>
@@ -52,15 +55,17 @@ user_has_valid_cookie_project();
       </div>
     </nav>
     <div class="container-fluid page-body-wrapper">
-      <?php
-		display_user_navigation_project();
+      <?php 
+		display_user_navigation_admin();
 	  ?>
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
-			<?php display_user_projects(); ?>
-		</div>
-	     <footer class="footer">
+			<?php include_once '../vendors/functions/project.php'; 
+			display_user_projects_admin(); 
+			?>
+        </div>
+        <footer class="footer">
           <div class="container-fluid clearfix">
             <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2019
               <a href="https://www.fri.uni-lj.si/sl" target="_blank" style="color:#5983e8;">FRI Ljubljana</a>. All rights reserved.</span>
@@ -68,6 +73,7 @@ user_has_valid_cookie_project();
             </span>
           </div>
         </footer>
+      </div>
     </div>
   </div>
   <script src="../vendors/js/vendor.bundle.base.js"></script>
@@ -75,7 +81,6 @@ user_has_valid_cookie_project();
   <script src="../js/off-canvas.js"></script>
   <script src="../js/misc.js"></script>
   <script src="../js/dashboard.js"></script>
-  <script src="../js/material-table.js"></script>
 </body>
 
 </html>

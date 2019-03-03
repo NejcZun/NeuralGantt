@@ -38,7 +38,9 @@ if (!$exists) {
     milestone        BOOLEAN  DEFAULT '0' NOT NULL,
     ordinal          INTEGER,
     ordinal_priority DATETIME,
-    complete         INTEGER  DEFAULT '0' NOT NULL
+    complete         INTEGER  DEFAULT '0' NOT NULL,
+	user_id INTEGER,
+	project_id INTEGER
     );");
 }
 $exists = tableExists($db, "link");
@@ -47,28 +49,10 @@ if (!$exists) {
     id      INTEGER       PRIMARY KEY AUTO_INCREMENT,
     from_id INTEGER       NOT NULL,
     to_id   INTEGER       NOT NULL,
-    type    VARCHAR (100) NOT NULL
+    type    VARCHAR (100) NOT NULL,
+	user_id INTEGER,
+	project_id INTEGER
     );");
-
-    $messages = array(
-                    array('name' => 'Task 1',
-                        'start' => '2019-03-05T00:00:00',
-                        'end' => '2019-03-10T10:00:00')
-                );
-
-    $insert = "INSERT INTO task (name, start, end) VALUES (:name, :start, :end)";
-    $stmt = $db->prepare($insert);
-
-    $stmt->bindParam(':name', $name);
-    $stmt->bindParam(':start', $start);
-    $stmt->bindParam(':end', $end);
-
-    foreach ($messages as $m) {
-      $name = $m['name'];
-      $start = $m['start'];
-      $end = $m['end'];
-      $stmt->execute();
-    }
 }
 
 

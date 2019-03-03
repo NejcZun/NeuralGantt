@@ -88,6 +88,25 @@ function user_has_valid_cookie_project_create(){
 		echo '<script>window.location.replace("../index.php");</script>';
 	}
 }
+/* check if user has valid cookie and admin role /admin/ */
+function user_has_valid_cookie_admin(){
+	if(isset($_COOKIE['user'])){
+		$user=base64_decode($_COOKIE['user']);
+		if(!db_user_exists($user)){
+			setcookie("user", "", time()-3600);
+			echo '<script>window.location.replace("../index.php");</script>';
+		}else{ /*valid cookie*/
+			if(!check_if_user_admin()){ /*checks if user admin */
+				echo '<script>window.location.replace("../home.php");</script>';
+			}
+		}
+	}else{
+		echo '<script>window.location.replace("../index.php");</script>';
+	}
+}
+
+
+
 /* login error* */
 function wrong_username_or_pass(){
 	echo '<div class="col-lg-12 mx-auto">

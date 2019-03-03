@@ -35,7 +35,7 @@ user_has_valid_cookie_project_create();
           </li>
           <li class="nav-item">
             <a href="index.php" class="nav-link">
-              <i class="mdi mdi-folder-multiple"></i>Projects</a>
+              <i class="mdi mdi-folder-multiple"></i>My Projects</a>
           </li>
 		  <?php
 			display_admin_mod_list_item_projects_active();

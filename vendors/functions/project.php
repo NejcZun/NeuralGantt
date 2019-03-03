@@ -106,9 +106,56 @@ function display_user_projects(){
 				  <td data-title="Status" style="vertical-align:middle;">
 					<div class="progress md-progress" style="height: 20px"><div class="progress-bar" role="progressbar" style="width: 25%; height: 20px; background-color:#00ce68 ;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div></div>
 				  </td>
+				  <td data-title="Action">';
+				  if(check_if_user_admin_or_mod()){
+					  echo '<a href="index.php?edit='.$row['project_id'].'" style="text-decoration:none;"><button type="button" class="btn btn-secondary btn-fw" style="min-width:100px;"><i class="mdi mdi-pencil"></i>Edit</button>
+							<a href="index.php?delete='.$row['project_id'].'" style="text-decoration:none;"><button type="button" class="btn btn-danger btn-fw" style="min-width:100px;"><i class="mdi mdi-delete"></i>Delete</button>';
+				  }else{
+					  echo '<a href="index.php?edit='.$row['project_id'].'" style="text-decoration:none;"><button type="button" class="btn btn-secondary btn-fw" style="min-width:100px;" disabled><i class="mdi mdi-pencil"></i>Edit</button>
+							<a href="index.php?delete='.$row['project_id'].'" style="text-decoration:none;"><button type="button" class="btn btn-danger btn-fw" style="min-width:100px;" disabled><i class="mdi mdi-delete"></i>Delete</button>';
+				  }
+				  echo '
+				  </td>
+				</tr>';
+		}
+		  echo '</tbody>
+			</table>
+		</div>';
+	}
+}
+function display_user_projects_admin(){
+    global $db;
+	$str = "SELECT DISTINCT p.project_id, p.project_name, p.user_id FROM project p join on_board o on o.project_id = p.project_id";
+    $stmt = $db->prepare($str);
+    $stmt->execute();
+	if($stmt->rowCount() === 0){
+		has_no_projects();
+	}else{
+	/* build the table class below: */
+		echo '<div class="table-responsive-vertical shadow-z-1">
+			  <table id="table" class="table table-hover table-mc-light-blue">
+				<thead>
+					<tr>
+						<th>Project name</th>
+						<th>Open</th>
+						<th>Manager</th>
+						<th>Status</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>';
+		
+		while ($row = $stmt->fetch()) {
+			echo '<tr>
+				  <td data-title="Name" style="vertical-align:middle;">'.$row['project_name'].'</td>
+				  <td data-title="Open"><a href="../project/index.php?project='.$row['project_id'].'"><button type="button" class="btn btn-primary btn-fw" style="min-width:100px; background-color:#5983e8"><i class="mdi mdi-folder-open"></i>Open</button></a></td>
+				  <td data-title="Manager" style="vertical-align:middle;">'.db_get_userUsername($row['project_id']).'</td>
+				  <td data-title="Status" style="vertical-align:middle;">
+					<div class="progress md-progress" style="height: 20px"><div class="progress-bar" role="progressbar" style="width: 25%; height: 20px; background-color:#00ce68 ;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div></div>
+				  </td>
 				  <td data-title="Action">
-					<a href="index.php?edit='.$row['project_id'].'" style="text-decoration:none;"><button type="button" class="btn btn-secondary btn-fw" style="min-width:100px;"><i class="mdi mdi-pencil"></i>Edit</button>
-					<a href="index.php?delete='.$row['project_id'].'" style="text-decoration:none;"><button type="button" class="btn btn-danger btn-fw" style="min-width:100px;"><i class="mdi mdi-delete"></i>Delete</button>
+					<a href="../project/index.php?edit='.$row['project_id'].'" style="text-decoration:none;"><button type="button" class="btn btn-secondary btn-fw" style="min-width:100px;"><i class="mdi mdi-pencil"></i>Edit</button>
+					<a href="../project/index.php?delete='.$row['project_id'].'" style="text-decoration:none;"><button type="button" class="btn btn-danger btn-fw" style="min-width:100px;"><i class="mdi mdi-delete"></i>Delete</button>
 				  </td>
 				</tr>';
 		}

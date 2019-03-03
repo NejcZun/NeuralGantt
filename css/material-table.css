@@ -641,9 +641,15 @@
     background-color: #ffccbc;
   }
 }
+.material-table-td-action{
+	vertical-align:right;
+}
 @media screen and (max-width: 768px){
 	.progress{
 		width: 210px;
 		float: right;
+	}
+	.material-table-td-action{
+	vertical-align:right;
 	}
 }

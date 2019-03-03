@@ -43,6 +43,17 @@ function db_user_exists($user){
     if($result['checkUser'] == 1) return true;
     return false;
 }
+function db_user_exists_byId($id){
+    global $db;
+
+    $query = "SELECT EXISTS(SELECT id from user WHERE id = :id) AS checkUser";
+    $stmt = $db->prepare($query);
+    $stmt->bindParam(":id", $id);
+    $stmt->execute();
+    $result = $stmt->fetch();
+    if($result['checkUser'] == 1) return true;
+    return false;
+}
 
 function db_get_userSalt($user){
     global $db;
