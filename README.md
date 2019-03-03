@@ -6,7 +6,7 @@
 - [x] Authentication
 - [ ] User Profile (pass reset, view)
 - [ ] Admin 
- - [] Users (edit delete)
+ - [ ] Users (edit delete)
   - [ ] View
   - [ ] Edit
   - [ ] Delete
