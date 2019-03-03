@@ -6,11 +6,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>UV | Register</title>
+  <title>UV | Main</title>
   <link rel="stylesheet" href="vendors/iconfonts/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
   <link rel="stylesheet" href="vendors/css/vendor.bundle.addons.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="shortcut icon" href="media/pictures/logo.png" />
 </head>
 <body>
 	<div class="row responsive-web-view">

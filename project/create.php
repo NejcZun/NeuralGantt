@@ -14,6 +14,7 @@ user_has_valid_cookie_project_create();
   <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
   <link rel="stylesheet" href="../vendors/css/vendor.bundle.addons.css">
   <link rel="stylesheet" href="../css/style.css">
+    <link rel="shortcut icon" href="../media/pictures/logo.png" />
 </head>
 <body>
   <div class="container-scroller">
@@ -71,7 +72,7 @@ user_has_valid_cookie_project_create();
                         </div>
 						<div class="form-group">
                           <label for="project_name">Project due date</label>
-                          <input name="project_end" type="date" class="form-control" id="project_name" placeholder="Due date" required>
+                          <input name="project_end" type="date" class="form-control" id="project_end" placeholder="Due date" required>
                         </div>
                         <button type="submit" class="btn btn-success mr-2">Create</button>
                       </form>

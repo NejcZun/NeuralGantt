@@ -94,6 +94,16 @@ function db_get_userRoleName($user){
     $result = $stmt->fetch();
     return $result['rolename'];
 }
+function db_get_userUsername($id){
+    global $db;
+
+    $query = "SELECT uname FROM user WHERE id = :id";
+    $stmt = $db->prepare($query);
+    $stmt->bindParam(":id", $id);
+    $stmt->execute();
+    $result = $stmt->fetch();
+    return $result['uname'];
+}
 
 function db_user_login($user, $pass){
     global $db;
@@ -109,5 +119,7 @@ function db_user_login($user, $pass){
     if($result['checkLogin'] == 1) return true;
     return false;
 }
-
+function cookie_get_username(){
+	return base64_decode($_COOKIE['user']);
+}
 ?>

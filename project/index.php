@@ -1,6 +1,7 @@
 <?php 
 include '../vendors/functions/auth.php'; 
 include '../vendors/functions/menu.php'; 
+include '../vendors/functions/project.php';
 user_has_valid_cookie_project(); 
 ?>
 <!DOCTYPE html>
@@ -14,6 +15,8 @@ user_has_valid_cookie_project();
   <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
   <link rel="stylesheet" href="../vendors/css/vendor.bundle.addons.css">
   <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/material-table.css">
+  <link rel="shortcut icon" href="../media/pictures/logo.png" />
 </head>
 <body>
   <div class="container-scroller">
@@ -33,14 +36,14 @@ user_has_valid_cookie_project();
             </a>
           </li>
           <li class="nav-item active">
-            <a href="manage.php" class="nav-link">
+            <a href="index.php" class="nav-link">
               <i class="mdi mdi-folder-multiple"></i>Projects</a>
           </li>
 		  <?php 
 			display_admin_mod_list_item_projects();
 		  ?>
         </ul>
-        <?php include_once '../vendors/functions/menu.php'; 
+        <?php
 			display_user_navbar_project();
 		?>
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
@@ -49,27 +52,15 @@ user_has_valid_cookie_project();
       </div>
     </nav>
     <div class="container-fluid page-body-wrapper">
-      <?php include_once '../vendors/functions/menu.php';
+      <?php
 		display_user_navigation_project();
 	  ?>
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
-			<div class="col-md-6 d-flex align-items-stretch grid-margin" style="margin:auto;">
-			<div class="col-md-6 d-flex align-items-stretch grid-margin" style="margin:auto;">
-              <div class="row flex-grow">
-                <div class="col-12">
-                  <div class="card">
-                    <div class="card-body">
-                      <h3 class="card-title" style="font-size:24px;">All the users projects: (CRUD - Enter)</h3>
-                      
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-        </div>
-        <footer class="footer">
+			<?php display_user_projects(); ?>
+		</div>
+	     <footer class="footer">
           <div class="container-fluid clearfix">
             <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2019
               <a href="https://www.fri.uni-lj.si/sl" target="_blank" style="color:#5983e8;">FRI Ljubljana</a>. All rights reserved.</span>
@@ -77,7 +68,6 @@ user_has_valid_cookie_project();
             </span>
           </div>
         </footer>
-      </div>
     </div>
   </div>
   <script src="../vendors/js/vendor.bundle.base.js"></script>
@@ -85,6 +75,7 @@ user_has_valid_cookie_project();
   <script src="../js/off-canvas.js"></script>
   <script src="../js/misc.js"></script>
   <script src="../js/dashboard.js"></script>
+  <script src="../js/material-table.js"></script>
 </body>
 
 </html>

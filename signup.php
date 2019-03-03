@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
   <link rel="stylesheet" href="vendors/css/vendor.bundle.addons.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="shortcut icon" href="media/pictures/logo.png" />
   <style>
   .injection-burek{
 	border: 1px solid #e5e5e5;

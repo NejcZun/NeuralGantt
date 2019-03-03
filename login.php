@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
   <link rel="stylesheet" href="vendors/css/vendor.bundle.addons.css">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="shortcut icon" href="images/favicon.png" />
+    <link rel="shortcut icon" href="media/pictures/logo.png" />
 </head>
 
 <body style="background: #5983e8">
