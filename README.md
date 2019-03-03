@@ -6,8 +6,9 @@
 - [x] Authentication
 - [ ] User Profile (pass reset, view)
 - [ ] Admin (manage profiles)
-- [ ] Authentication on pages
+- [x] Authentication on pages
 - [x] Create projects
+- [x] Responsive project (per user) view
 - [ ] Manage projects (change name, add people...)
 - [ ] Implement gantt into project view
 - [ ] UI tweaks
