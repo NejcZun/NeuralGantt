@@ -6,6 +6,8 @@ function admin_user_display(){
 	if(isset($_POST['delete']) or isset($_POST['edit'])){
 		if(isset($_POST['delete'])){
 			delete_user($_POST['delete']);
+		}else{
+			edit_user($_POST['edit']);
 		}
 	}
 	
@@ -13,7 +15,7 @@ function admin_user_display(){
 	if(isset($_GET['delete']) or isset($_GET['edit'])){
 		if(isset($_GET['edit'])){
 			if(db_user_exists_byId($_GET['edit'])){
-				
+				display_users_admin_edit($_GET['edit']);
 			}else{
 				echo '<script>window.location.replace("users.php");</script>';
 			}
@@ -29,6 +31,90 @@ function admin_user_display(){
 		display_users_admin();
 	}
 }
+
+function display_users_admin_edit($id){
+	global $db;
+	$str = "SELECT u.id, u.uname, u.fname, u.lname, u.email, r.rolename, r.role_id from user u join role r on r.role_id = u.role_id where u.id={$id}";
+    $stmt = $db->prepare($str);
+    $stmt->execute();
+	if($stmt->rowCount() === 0){
+	}else{
+	/* build the table class below: */
+		echo '<div class="table-responsive-vertical shadow-z-1">
+			  <table id="table" class="table table-hover table-mc-light-blue table-big-boy">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Surname</th>
+						<th>Username</th>
+						<th>Email</th>
+						<th>Role</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>';
+		
+		while ($row = $stmt->fetch()) {
+			echo '<tr>
+			<form method="POST" action="users.php">
+				 <td data-title="Name" style="vertical-align:middle;"><input type="text" value="'.$row['fname'].'" name="fname" class="form-control"/></td>
+				 <td data-title="Surname" style="vertical-align:middle;"><input type="text" value="'.$row['lname'].'" name="lname" class="form-control"/></td>
+				 <td data-title="Username" style="vertical-align:middle;"><input type="text" value="'.$row['uname'].'" name="uname" class="form-control"/></td>
+				 <td data-title="Email" style="vertical-align:middle;"><input type="text" value="'.$row['email'].'" name="email" class="form-control"/></td>
+				 <td data-title="Role" style="vertical-align:middle;">';
+				 if($row['rolename']=='admin')display_active_select_admin();
+				 else if($row['rolename']=='manager')display_active_select_manager();
+				 else display_active_select_user(); 
+				 echo '</td>
+				 <td data-title="Action" class="material-table-td-action">
+				 	<button type="submit" class="btn btn-success btn-fw" style="min-width:100px;" name="edit" value="'.$row['id'].'"><i class="mdi mdi-update"></i>Update</button>
+					<a href="users.php" style="text-decoration:none;"><button type="button" class="btn btn-secondary btn-fw" style="min-width:100px;"><i class="mdi mdi-back"></i>Back</button>
+				</td></form>
+				</tr>';
+		}
+		  echo '</tbody>
+			</table>
+		</div>';
+	}
+	
+}
+
+function display_active_select_admin(){
+	echo '<select name="rolename" class="form-control">
+			<option value="1" selected> Admin </option>
+			<option value="2"> Manager </option>
+			<option value="3"> User </option>
+		  </select>';
+}
+function display_active_select_manager(){
+	echo '<select name="rolename" class="form-control">
+			<option value="1"> Admin </option>
+			<option value="2" selected> Manager </option>
+			<option value="3"> User </option>
+		  </select>';
+}
+function display_active_select_user(){
+	echo '<select name="rolename" class="form-control">
+			<option value="1"> Admin </option>
+			<option value="2"> Manager </option>
+			<option value="3" selected> User </option>
+		  </select>';
+}
+
+function edit_user($id){
+	global $db;
+	$str = "UPDATE user SET fname = :fname, lname = :lname, uname = :uname, email = :email, role_id = :role WHERE id = :id";
+    $stmt = $db->prepare($str);
+	$stmt->bindParam(":id", $id);
+    $stmt->bindParam(":fname", $_POST['fname']);
+	$stmt->bindParam(":lname", $_POST['lname']);
+	$stmt->bindParam(":uname", $_POST['uname']);
+	$stmt->bindParam(":email", $_POST['email']);
+	$stmt->bindParam(":role", $_POST['rolename']);
+    $stmt->execute();
+	
+}
+
 
 function delete_user($id){
 	global $db;

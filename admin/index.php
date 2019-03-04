@@ -57,9 +57,6 @@ user_has_valid_cookie_admin();
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
-			<?php include_once '../vendors/functions/project.php'; 
-			if(isset($_POST['project_name'])) add_project($_POST['project_name'], $_POST['project_end']);
-			?>
 			<div class="row">
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
               <a href="project.php" class="admin-card"><div class="card card-statistics shadow-z-1">

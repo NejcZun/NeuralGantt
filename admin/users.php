@@ -15,7 +15,7 @@ user_has_valid_cookie_admin();
   <link rel="stylesheet" href="../vendors/css/vendor.bundle.addons.css">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/material-table.css">
-    <link rel="shortcut icon" href="../media/pictures/logo.png" />
+  <link rel="shortcut icon" href="../media/pictures/logo.png" />
 </head>
 <body>
   <div class="container-scroller">
