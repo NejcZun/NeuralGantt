@@ -9,7 +9,7 @@
  - Users (done)
  - Projects
    - View (done)
-   - Edit
+   - Edit (autocomplete + AJAX POST (without reset)
    - Delete (done)
 - [x] Authentication on pages
 - [x] View Projects
