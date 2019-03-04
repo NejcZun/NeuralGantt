@@ -15,7 +15,7 @@ function parent_display_project(){
 		if(!verify_user_profile($_GET['edit'])){ /* if user doesnt own the project and not admin */
 			echo '<script>window.location.replace("index.php");</script>';
 		}else{
-			
+			display_edit_project($_GET['edit']);
 		}
 		
 	}else if(isset($_GET['delete'])){
@@ -30,7 +30,10 @@ function parent_display_project(){
 	}
 	
 }
-
+function display_edit_project($id){
+	echo '';
+	
+}
 function delete_project($id){
 	global $db;
 	/*deletes from links */
