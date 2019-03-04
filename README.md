@@ -6,10 +6,7 @@
 - [x] Authentication
 - [ ] User Profile (view) <= NEXT
 - [ ] Admin 
- - Users
-   - View (done)
-   - Edit
-   - Delete (done)
+ - Users (done)
  - Projects
    - View (done)
    - Edit
