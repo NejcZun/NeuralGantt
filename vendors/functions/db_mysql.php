@@ -123,4 +123,15 @@ function db_user_login($user, $pass){
 function cookie_get_username(){
 	return base64_decode($_COOKIE['user']);
 }
+
+function db_check_uname_exists($user){
+    global $db;
+    
+    $query = "SELECT COUNT(*) AS countUsers FROM user WHERE uname = :user";
+    $stmt = $db->prepare($query);
+    $stmt->bindParam(":user", $user);
+    $stmt->execute();
+    $result = $stmt->fetch();
+    return $result['countUser'];
+}
 ?>

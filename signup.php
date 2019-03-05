@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="vendors/css/vendor.bundle.addons.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="shortcut icon" href="media/pictures/logo.png" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <style>
   .injection-burek{
 	border: 1px solid #e5e5e5;
@@ -43,7 +44,53 @@
           <div class="col-lg-4 mx-auto">
             <div class="auto-form-wrapper">
 			            <h2 class="text-center mb-4">Sign Up</h2>
-              <form action="#">
+              <form action="./signup.php" method="POST" >
+              <?php
+                
+                
+                //include "./vendors/functions/check_uname.php";
+
+              ?>
+              <script>
+              $(document).ready(function(){
+
+                $("#txt_uname").keyup(function(){
+
+                    var uname = $("#txt_uname").val().trim();
+
+                    console.log(uname);
+
+                    if(uname != ''){
+
+                      $("#uname_response").show();
+
+                      $.ajax({
+                          url: 'check_uname.php',
+                          type: 'post',
+                          data: {username : uname},
+                          success: function(response){
+                              console.log(resposne);
+                              if(response > 0){
+                                console.log('Unavaible');
+                                  $("#uname_response").html("* Username Already in use.");
+                              }else{
+                                  $("#uname_response").html("Available.");
+                                  console.log("Avaible");
+                              }
+
+                          }
+                          // http://api.jquery.com/jquery.ajax/
+                        })
+                        
+                    }else{
+
+                      //$("#uname_response").hide();
+                    }
+
+                  });
+
+              });
+              </script>
 			  <div class="row">
                       <div class="col-md-6">
                         <div class="form-group row">
@@ -62,11 +109,13 @@
                     </div>
                 <div class="form-group">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Username">
+                    <input type="text" class="form-control" placeholder="Username" id="txt_uname" name="txt_uname">
                     <div class="input-group-append">
                       <span class="input-group-text">
                         <i class="mdi mdi-check-circle-outline"></i>
                       </span>
+                    </div id="uname_response">
+                    <div>
                     </div>
                   </div>
                 </div>
