@@ -132,6 +132,6 @@ function db_check_uname_exists($user){
     $stmt->bindParam(":user", $user);
     $stmt->execute();
     $result = $stmt->fetch();
-    return $result['countUser'];
+    return $result['countUsers'];
 }
 ?>

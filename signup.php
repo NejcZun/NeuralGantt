@@ -45,48 +45,40 @@
             <div class="auto-form-wrapper">
 			            <h2 class="text-center mb-4">Sign Up</h2>
               <form action="./signup.php" method="POST" >
-              <?php
-                
-                
-                //include "./vendors/functions/check_uname.php";
-
-              ?>
               <script>
               $(document).ready(function(){
 
                 $("#txt_uname").keyup(function(){
-
                     var uname = $("#txt_uname").val().trim();
-
                     console.log(uname);
-
                     if(uname != ''){
-
-                      $("#uname_response").show();
+                      // change from grey to correct hex value
+                      $("#uname_response").css("color", "grey");
 
                       $.ajax({
-                          url: 'check_uname.php',
+                          url: './vendors/functions/check_uname.php',
                           type: 'post',
                           data: {username : uname},
                           success: function(response){
-                              console.log(resposne);
-                              if(response > 0){
-                                console.log('Unavaible');
-                                  $("#uname_response").html("* Username Already in use.");
-                              }else{
-                                  $("#uname_response").html("Available.");
-                                  console.log("Avaible");
-                              }
 
+                              console.log(response);
+                              //console.log($.type(response));
+
+                              if(response === "1"){
+                                console.log('Unavaible');
+                                $("#uname_response").css("color","red");
+                              }else{
+                                $("#uname_response").css("color", "green");
+                                console.log("Avaible");
+                              }
                           }
                           // http://api.jquery.com/jquery.ajax/
                         })
-                        
-                    }else{
-
-                      //$("#uname_response").hide();
                     }
-
+                    else{
+                      // change from grey to correct hex value
+                      $("#uname_response").css("color", "grey");
+                    }
                   });
 
               });
@@ -112,10 +104,8 @@
                     <input type="text" class="form-control" placeholder="Username" id="txt_uname" name="txt_uname">
                     <div class="input-group-append">
                       <span class="input-group-text">
-                        <i class="mdi mdi-check-circle-outline"></i>
+                        <i class="mdi mdi-check-circle-outline" id="uname_response"></i>
                       </span>
-                    </div id="uname_response">
-                    <div>
                     </div>
                   </div>
                 </div>
