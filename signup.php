@@ -64,7 +64,7 @@
                               console.log(response);
                               //console.log($.type(response));
 
-                              if(response === "1"){
+                              if(response > 0){
                                 console.log('Unavaible');
                                 $("#uname_response").css("color","red");
                               }else{
