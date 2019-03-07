@@ -77,7 +77,7 @@
                     }
                     else{
                       // change from grey to correct hex value
-                      $("#uname_response").css("color", "grey");
+                      $("#uname_response").css("color", "#b6b6b6");
                     }
                   });
 
@@ -87,21 +87,21 @@
                       <div class="col-md-6">
                         <div class="form-group row">
                           <div class="col-sm-12">
-                            <input type="text" class="form-control injection-burek" placeholder="First name">
+                            <input type="text" class="form-control injection-burek" placeholder="First name" required>
                           </div>
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group row">
                           <div class="col-sm-12">
-                            <input type="text" class="form-control injection-burek" placeholder="Last name">
+                            <input type="text" class="form-control injection-burek" placeholder="Last name" required>
                           </div>
                         </div>
                       </div>
                     </div>
                 <div class="form-group">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Username" id="txt_uname" name="txt_uname">
+                    <input type="text" class="form-control" placeholder="Username" id="txt_uname" name="txt_uname" required>
                     <div class="input-group-append">
                       <span class="input-group-text">
                         <i class="mdi mdi-check-circle-outline" id="uname_response"></i>
@@ -111,7 +111,7 @@
                 </div>
 				<div class="form-group">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Email">
+                    <input type="text" class="form-control" placeholder="Email" required>
                     <div class="input-group-append">
                       <span class="input-group-text">
                         <i class="mdi mdi-check-circle-outline"></i>
@@ -121,7 +121,7 @@
                 </div>
                 <div class="form-group">
                   <div class="input-group">
-                    <input type="password" class="form-control" placeholder="Password">
+                    <input type="password" class="form-control" placeholder="Password" required>
                     <div class="input-group-append">
                       <span class="input-group-text">
                         <i class="mdi mdi-check-circle-outline"></i>
@@ -131,7 +131,7 @@
                 </div>
                 <div class="form-group">
                   <div class="input-group">
-                    <input type="password" class="form-control" placeholder="Confirm Password">
+                    <input type="password" class="form-control" placeholder="Confirm Password"required>
                     <div class="input-group-append">
                       <span class="input-group-text">
                         <i class="mdi mdi-check-circle-outline"></i>
