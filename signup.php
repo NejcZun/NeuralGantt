@@ -60,24 +60,25 @@
                           type: 'post',
                           data: {username : uname},
                           success: function(response){
-
-                              console.log(response);
-                              //console.log($.type(response));
-
                               if(response > 0){
-                                console.log('Unavaible');
-                                $("#uname_response").css("color","red");
+                                $("#uname_response_false").css("color","red");
+								$("#uname_response_false").show();
+								$("#uname_response_true").hide();
                               }else{
-                                $("#uname_response").css("color", "green");
-                                console.log("Avaible");
+                                $("#uname_response_true").css("color", "green");
+								$("#uname_response_true").show();
+								$("#uname_response_false").hide();
+   
                               }
                           }
-                          // http://api.jquery.com/jquery.ajax/
                         })
                     }
                     else{
                       // change from grey to correct hex value
-                      $("#uname_response").css("color", "#b6b6b6");
+                      $("#uname_response_true").css("color", "#b6b6b6");
+					  $("#uname_response_false").hide();
+					  $("#uname_response_true").show();
+					  
                     }
                   });
 
@@ -87,24 +88,25 @@
                       <div class="col-md-6">
                         <div class="form-group row">
                           <div class="col-sm-12">
-                            <input type="text" class="form-control injection-burek" placeholder="First name" required>
+                            <input type="text" class="form-control injection-burek" placeholder="First name" pattern="[A-Za-zčćžđšČĆŽĐŠ]*" required>
                           </div>
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group row">
                           <div class="col-sm-12">
-                            <input type="text" class="form-control injection-burek" placeholder="Last name" required>
+                            <input type="text" class="form-control injection-burek" placeholder="Last name" pattern="[A-Za-zčćžđšČĆŽĐŠ]*" required>
                           </div>
                         </div>
                       </div>
                     </div>
                 <div class="form-group">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Username" id="txt_uname" name="txt_uname" required>
+                    <input type="text" class="form-control" placeholder="Username" id="txt_uname" name="txt_uname" pattern="[A-Za-z0-9čćžđšČĆŽĐŠ]*" required>
                     <div class="input-group-append">
                       <span class="input-group-text">
-                        <i class="mdi mdi-check-circle-outline" id="uname_response"></i>
+                        <i class="mdi mdi-check-circle-outline" id="uname_response_true"></i>
+						<i class="mdi mdi-close-circle-outline" id="uname_response_false" style="display:none;"></i>
                       </span>
                     </div>
                   </div>
@@ -114,7 +116,8 @@
                     <input type="text" class="form-control" placeholder="Email" required>
                     <div class="input-group-append">
                       <span class="input-group-text">
-                        <i class="mdi mdi-check-circle-outline"></i>
+                        <i class="mdi mdi-check-circle-outline" id="uname_response_true"></i>
+						<i class="mdi mdi-close-circle-outline" id="uname_response_false"></i>
                       </span>
                     </div>
                   </div>
@@ -124,7 +127,8 @@
                     <input type="password" class="form-control" placeholder="Password" required>
                     <div class="input-group-append">
                       <span class="input-group-text">
-                        <i class="mdi mdi-check-circle-outline"></i>
+                        <i class="mdi mdi-check-circle-outline" id="uname_response_true"></i>
+						<i class="mdi mdi-close-circle-outline" id="uname_response_false"></i>
                       </span>
                     </div>
                   </div>
@@ -134,7 +138,8 @@
                     <input type="password" class="form-control" placeholder="Confirm Password"required>
                     <div class="input-group-append">
                       <span class="input-group-text">
-                        <i class="mdi mdi-check-circle-outline"></i>
+                        <i class="mdi mdi-check-circle-outline" id="uname_response_true"></i>
+						<i class="mdi mdi-close-circle-outline" id="uname_response_false"></i>
                       </span>
                     </div>
                   </div>
