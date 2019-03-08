@@ -134,4 +134,15 @@ function db_check_uname_exists($user){
     $result = $stmt->fetch();
     return $result['countUsers'];
 }
+
+function db_check_email_exists($email){
+    global $db;
+    
+    $query = "SELECT COUNT(*) AS countEmail FROM user WHERE email = :email";
+    $stmt = $db->prepare($query);
+    $stmt->bindParam(":email", $email);
+    $stmt->execute();
+    $result = $stmt->fetch();
+    return $result['countEmail'];
+}
 ?>
