@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="vendors/css/vendor.bundle.addons.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="shortcut icon" href="media/pictures/logo.png" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <style>
   .injection-burek{
 	border: 1px solid #e5e5e5;
@@ -43,59 +44,102 @@
           <div class="col-lg-4 mx-auto">
             <div class="auto-form-wrapper">
 			            <h2 class="text-center mb-4">Sign Up</h2>
-              <form action="#">
+              <form action="./signup.php" method="POST" >
+              <script>
+              $(document).ready(function(){
+
+                $("#txt_uname").keyup(function(){
+                    var uname = $("#txt_uname").val().trim();
+                    console.log(uname);
+                    if(uname != ''){
+                      // change from grey to correct hex value
+                      $("#uname_response").css("color", "grey");
+
+                      $.ajax({
+                          url: './vendors/functions/check_uname.php',
+                          type: 'post',
+                          data: {username : uname},
+                          success: function(response){
+                              if(response > 0){
+                                $("#uname_response_false").css("color","red");
+								$("#uname_response_false").show();
+								$("#uname_response_true").hide();
+                              }else{
+                                $("#uname_response_true").css("color", "green");
+								$("#uname_response_true").show();
+								$("#uname_response_false").hide();
+   
+                              }
+                          }
+                        })
+                    }
+                    else{
+                      // change from grey to correct hex value
+                      $("#uname_response_true").css("color", "#b6b6b6");
+					  $("#uname_response_false").hide();
+					  $("#uname_response_true").show();
+					  
+                    }
+                  });
+
+              });
+              </script>
 			  <div class="row">
                       <div class="col-md-6">
                         <div class="form-group row">
                           <div class="col-sm-12">
-                            <input type="text" class="form-control injection-burek" placeholder="First name">
+                            <input type="text" class="form-control injection-burek" placeholder="First name" pattern="[A-Za-zčćžđšČĆŽĐŠ]*" required>
                           </div>
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group row">
                           <div class="col-sm-12">
-                            <input type="text" class="form-control injection-burek" placeholder="Last name">
+                            <input type="text" class="form-control injection-burek" placeholder="Last name" pattern="[A-Za-zčćžđšČĆŽĐŠ]*" required>
                           </div>
                         </div>
                       </div>
                     </div>
                 <div class="form-group">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Username">
+                    <input type="text" class="form-control" placeholder="Username" id="txt_uname" name="txt_uname" pattern="[A-Za-z0-9čćžđšČĆŽĐŠ]*" required>
                     <div class="input-group-append">
                       <span class="input-group-text">
-                        <i class="mdi mdi-check-circle-outline"></i>
+                        <i class="mdi mdi-check-circle-outline" id="uname_response_true"></i>
+						<i class="mdi mdi-close-circle-outline" id="uname_response_false" style="display:none;"></i>
                       </span>
                     </div>
                   </div>
                 </div>
 				<div class="form-group">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Email">
+                    <input type="text" class="form-control" placeholder="Email" required>
                     <div class="input-group-append">
                       <span class="input-group-text">
-                        <i class="mdi mdi-check-circle-outline"></i>
+                        <i class="mdi mdi-check-circle-outline" id="uname_response_true"></i>
+						<i class="mdi mdi-close-circle-outline" id="uname_response_false"></i>
                       </span>
                     </div>
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group">
-                    <input type="password" class="form-control" placeholder="Password">
+                    <input type="password" class="form-control" placeholder="Password" required>
                     <div class="input-group-append">
                       <span class="input-group-text">
-                        <i class="mdi mdi-check-circle-outline"></i>
+                        <i class="mdi mdi-check-circle-outline" id="uname_response_true"></i>
+						<i class="mdi mdi-close-circle-outline" id="uname_response_false"></i>
                       </span>
                     </div>
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group">
-                    <input type="password" class="form-control" placeholder="Confirm Password">
+                    <input type="password" class="form-control" placeholder="Confirm Password"required>
                     <div class="input-group-append">
                       <span class="input-group-text">
-                        <i class="mdi mdi-check-circle-outline"></i>
+                        <i class="mdi mdi-check-circle-outline" id="uname_response_true"></i>
+						<i class="mdi mdi-close-circle-outline" id="uname_response_false"></i>
                       </span>
                     </div>
                   </div>
