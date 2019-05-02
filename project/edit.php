@@ -22,7 +22,9 @@ $isparent = $stmt->fetchColumn(0);
 <head>
     <title></title>
     
-    <link type="text/css" rel="stylesheet" href="../media/layout.css" />    
+    <link type="text/css" rel="stylesheet" href="../media/layout.css" />
+	<link type="text/css" rel="stylesheet" href="../css/gantt.css" />    
+	<link rel="stylesheet" href="../css/style.css">
     <script src="../js/jquery-1.9.1.min.js" type="text/javascript"></script>
     <script src="../js/gantt.min.js" type="text/javascript"></script>
 	
@@ -34,7 +36,7 @@ $isparent = $stmt->fetchColumn(0);
 <div class="space">
     <div>Name:</div>
     <div>
-        <input id="name" name="name" value="<?php echo htmlspecialchars($data["name"]) ?>"/>
+        <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($data["name"]) ?>"/>
     </div>
 </div>
     
@@ -51,7 +53,7 @@ $isparent = $stmt->fetchColumn(0);
 <div class="space">
     <div>Start:</div>
     <div>
-        <input id="start" name="start"/> <a href="#" onclick="startPicker.show(); return false;">Change</a>
+        <input id="start" name="start"/> <a href="#" onclick="startPicker.show(); return false;" class="btn btn-secondary">Change</a>
     </div>
 </div>
     
@@ -60,7 +62,7 @@ $isparent = $stmt->fetchColumn(0);
     <div class="space">
         <div>End:</div>
         <div>
-            <input id="end" name="end"/> <a href="#" onclick="endPicker.show(); return false;">Change</a>
+            <input id="end" name="end"/> <a href="#" onclick="endPicker.show(); return false;" class="btn btn-secondary">Change</a>
         </div>
     </div>
 
@@ -84,8 +86,8 @@ $isparent = $stmt->fetchColumn(0);
 
 <div class="space">
     <input type="hidden" name="id" id="id" value="<?php echo $_GET['id'] ?>"/>
-    <input type="submit" value="OK" />
-    <a href="#" id="cancel">Cancel</a>
+    <input type="submit" value="OK" class="btn btn-success"/>
+    <a href="#" id="cancel" class="btn btn-secondary" >Cancel</a>
 </div>
     
 </form>

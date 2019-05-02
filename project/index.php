@@ -19,12 +19,13 @@ user_has_valid_cookie_project();
   <link rel="shortcut icon" href="../media/pictures/logo.png" />
   <!-- editor -->
   <link rel="stylesheet" href="../media/layout.css">
+  <link rel="stylesheet" href="../css/gantt.css">
   <script src="../js/jquery-1.9.1.min.js" type="text/javascript"></script>
   <script src="../js/gantt.min.js" type="text/javascript"></script>
   <style>
 	.gantt_default_corner  > div:nth-child(4) {
-	    background: rgb(243, 243, 243)!important;
-		color: rgb(243, 243, 243)!important;
+	    background: #F5F5F5!important;
+		color: #F5F5F5!important;
 		content: 'Burek'!important;
 	}
 	.profile-name{
