@@ -2,7 +2,7 @@
 ### To do list:
 - [x] Main page
 - [x] Login
-- [ ] Registration (Grega WIP) <= NEXT
+- [x] Registration
 - [x] Authentication
 - [ ] User Profile (view) <= NEXT
 - [ ] Admin 
@@ -16,7 +16,7 @@
 - [x] Create projects
 - [x] Responsive project (per user) view
 - [ ] Manage projects (change name, add people...)
-- [ ] Implement gantt into project view
+- [x] Implement gantt into project view
 - [ ] UI tweaks
 - [ ] Neural network to project view
 - [ ] Alpha version
