@@ -3,7 +3,7 @@ require_once '_db_mysql.php';
 
 class Task {}
 
-$result = tasklist($db, db_get_tasks(null));
+$result = tasklist($db, db_get_tasks(null, $_GET['id']));
 
 header('Content-Type: application/json');
 echo json_encode($result);
@@ -26,7 +26,7 @@ function tasklist($db, $items) {
       
       $parent = $r->id;
       
-      $children = db_get_tasks($parent);
+      $children = db_get_tasks($parent, $_GET['id']);
       
       if (!empty($children)) {
           $r->children = tasklist($db, $children);

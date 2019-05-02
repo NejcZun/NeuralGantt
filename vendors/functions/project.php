@@ -374,7 +374,7 @@ echo '<div class="hideSkipLink">
                 };
 
                 dp.onLinkCreate = function(args) {
-                    $.post("backend_link_create.php", {
+                    $.post("backend_link_create.php?id='.$_GET['project'].'", {
                         from: args.from,
                         to: args.to,
                         type: args.type
@@ -398,7 +398,7 @@ echo '<div class="hideSkipLink">
                 loadLinks();
 
                 function loadTasks() {
-                    $.post("backend_tasks.php", function(data) {
+                    $.post("backend_tasks.php?id='.$_GET['project'].'", function(data) {
                         dp.tasks.list = data;
                         dp.update();
                     });

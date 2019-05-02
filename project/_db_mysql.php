@@ -184,8 +184,8 @@ function db_get_max_ordinal($parent) {
 
 function db_get_task($id) {
     global $db;
-
-    $str = "SELECT * FROM task WHERE id = :id";
+	
+	$str = "SELECT * FROM task WHERE id = :id";
     $stmt = $db->prepare($str);
     $stmt->bindParam(":id", $id);
     $stmt->execute();
@@ -207,7 +207,7 @@ function db_update_task_parent($id, $parent, $ordinal) {
 }
 
 function db_compact_ordinals($parent) {
-    $children = db_get_tasks($parent);
+    $children = db_get_tasks($parent, null);
     $size = count($children);
     for ($i = 0; $i < $size; $i++) {
         $row = $children[$i];
@@ -253,10 +253,13 @@ function db_update_task_full($id, $start, $end, $name, $complete, $milestone) {
     $stmt->execute();
 }
 
-function db_get_tasks($parent) {
+function db_get_tasks($parent, $id) {
     global $db;
-
-    $str = 'SELECT * FROM task WHERE parent_id = :parent ORDER BY ordinal, ordinal_priority desc';
+	if($id != null){
+		    $str = 'SELECT * FROM task WHERE parent_id = :parent and project_id = '.$id.' ORDER BY ordinal, ordinal_priority desc';
+	}else{
+		$str = 'SELECT * FROM task WHERE parent_id = :parent ORDER BY ordinal, ordinal_priority desc';
+	}
     if ($parent == null) {
         $str = str_replace("= :parent", "is null", $str);
         $stmt = $db->prepare($str);
