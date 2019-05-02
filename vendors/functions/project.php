@@ -31,7 +31,7 @@ function parent_display_project(){
 	
 }
 function display_edit_project($id){
-	echo '';
+	echo 'Burek';
 	
 }
 function delete_project($id){
