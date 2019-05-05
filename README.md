@@ -4,7 +4,7 @@
 - [x] Login
 - [x] Registration
 - [x] Authentication
-- [x] User Profile (view) <= NEXT
+- [x] User Profile (view)
 - [x] Admin 
  - Users (done)
  - Projects (done)
