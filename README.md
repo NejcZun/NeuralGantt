@@ -5,7 +5,7 @@
 - [x] Registration
 - [x] Authentication
 - [ ] User Profile (view) <= NEXT
-- [ ] Admin 
+- [x] Admin 
  - Users (done)
  - Projects (done)
    - View (done)
@@ -18,7 +18,7 @@
 - [x] Manage projects (change name, add people...)
 - [x] Implement gantt into project view
 - [ ] UI tweaks
-- [ ] Neural network to project view
+- [x] Neural network to project view
 - [ ] Alpha version
 
 ### Low Priority:
