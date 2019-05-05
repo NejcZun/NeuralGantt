@@ -362,7 +362,6 @@ function get_progress_bar($id){
     $stmt->execute();
     $result = $stmt->fetch();
     return $result['progress'];
-	
 }
 function has_no_projects(){
 	echo '<div class="col-md-6 d-flex align-items-stretch grid-margin" style="margin:auto;">
@@ -378,6 +377,27 @@ function has_no_projects(){
          </div>';
 }
 
+function getProjectStartDate($project){
+	global $db;
+	$query = "SELECT start FROM project WHERE project_id = :project";
+	$stmt = $db->prepare($query);
+	$stmt->bindParam(":project", $project);
+	$stmt->execute();
+	$result = $stmt->fetch();
+	$result = explode(" ", $result['start']);
+	return $result[0];
+}
+
+function getProjectDaysLength($project){
+	global $db;
+	$query = "SELECT DATEDIFF(end, start) AS 'days' FROM project WHERE project_id = :project";
+	$stmt = $db->prepare($query);
+	$stmt->bindParam(":project", $project);
+	$stmt->execute();
+	$result = $stmt->fetch();
+	return $result['days'];
+}
+
 /* GANTT: */
 function display_gantt(){
 echo '<div class="hideSkipLink">
@@ -386,9 +406,10 @@ echo '<div class="hideSkipLink">
             <div class="space"></div>
             <div id="dp"></div>
 			<script type="text/javascript">
-                var dp = new DayPilot.Gantt("dp");
-                dp.startDate = new DayPilot.Date("2019-03-01");
-                dp.days = 93;
+				var dp = new DayPilot.Gantt("dp");
+				
+				dp.startDate = new DayPilot.Date("'.getProjectStartDate($_GET['project']).'");
+				dp.days = '.getProjectDaysLength($_GET['project']).' + 1;
 
                 dp.linkBottomMargin = 5;
 
