@@ -11,6 +11,17 @@
   <link rel="stylesheet" href="vendors/css/vendor.bundle.addons.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="shortcut icon" href="media/pictures/logo.png" />
+  <style>
+  .shadow-z-1{
+  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24);
+    -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24);
+	}
+   .admin-card{
+	   width: 100%;
+		text-decoration: none;
+   }
+</style>
 </head>
 <body>
   <div class="container-scroller">
@@ -51,7 +62,7 @@
         <div class="content-wrapper">
           <div class="row">
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-              <div class="card card-statistics">
+             <a href="./project/index.php" class="admin-card"><div class="card card-statistics shadow-z-1">
                 <div class="card-body">
                   <div class="clearfix">
                     <div class="float-left">
@@ -67,10 +78,10 @@
                     <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i>Click here to view your projects
                   </p>
                 </div>
-              </div>
+              </div></a>
             </div>
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-              <div class="card card-statistics">
+              <div class="card card-statistics shadow-z-1">
                 <div class="card-body">
                   <div class="clearfix">
                     <div class="float-left">
@@ -89,7 +100,7 @@
               </div>
             </div>
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-              <div class="card card-statistics">
+              <a href="./project/neural.php" class="admin-card"><div class="card card-statistics shadow-z-1">
                 <div class="card-body">
                   <div class="clearfix">
                     <div class="float-left">
@@ -105,10 +116,10 @@
                     <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i>Click here to view neural networks
                   </p>
                 </div>
-              </div>
+              </div></a>
             </div>
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-              <div class="card card-statistics">
+              <div class="card card-statistics shadow-z-1">
                 <div class="card-body">
                   <div class="clearfix">
                     <div class="float-left">
