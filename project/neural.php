@@ -4,6 +4,9 @@ include '../vendors/functions/menu.php';
 include '../vendors/functions/project.php';
 include '../vendors/functions/neural.php';
 user_has_valid_cookie_project(); 
+if(!isset($_GET['project'])){
+	echo "<script>window.location.replace('../home.php')</script>";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -83,6 +86,7 @@ user_has_valid_cookie_project();
       <div class="main-panel">
         <div class="content-wrapper">
 			<?php 
+				
                 display_neural_network($_GET['project']);
 			?>
 			
