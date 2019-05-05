@@ -43,7 +43,7 @@ user_has_valid_cookie_admin();
 		  ?>
 		  <li class="nav-item active">
             <a href="project.php" class="nav-link">
-              <i class="mdi mdi-folder-multiple-outline"></i>All Projects</a>
+              <i class="mdi mdi-chemical-weapon"></i>All Neurals</a>
           </li>
         </ul>
         <?php 
