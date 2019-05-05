@@ -31,8 +31,110 @@ function parent_display_project(){
 	
 }
 function display_edit_project($id){
-	echo 'Burek';
+	if(isset($_POST['project_name'])){
+		update_project_name($id, $_POST['project_name']);
+	}
+	echo '<div class="col-md-6 d-flex align-items-stretch grid-margin" style="margin:auto; margin-bottom: 40px;">
+              <div class="row flex-grow">
+                <div class="col-12">
+                  <div class="card">
+                    <div class="card-body">
+					  <h3 class="card-title" style="font-size:24px;">Change name:</h3>
+						<form method="POST" action="./index.php?edit='.$id.'">
+                        <div class="form-group">
+                          <label for="project_name">Project name</label>
+                          <input name="project_name" type="text" class="form-control" id="project_name" required="" value ='.get_project_name($id).'>
+                        </div>
+                        <button type="submit" class="btn btn-success mr-2">Update</button>
+                      </form>
+                      <h3 class="card-title" style="font-size:24px; margin-top:30px;">Add users:</h3>
+					   <label for="magic_cover_up" style="font-size: 13px;">Select names and add them to your project</label>
+						<div class="adjust"></div>
+							<section id="magic_cover_up">
+								<input class="magicsearch" id="basic" placeholder="search names...">
+							</section>
+							<button type="button" class="btn btn-success mr-2" style="min-width:100px; margin-top:40px;" onClick="addUsers()">Add</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>';
+	echo "<script>
+        $(function() {
+            var dataSource = [
+                ".get_data_users($id)."
+            ];
+            $('#basic').magicsearch({
+                dataSource: dataSource,
+                fields: ['firstName', 'lastName'],
+                id: 'id',
+                format: '%firstName% %lastName%',
+                multiple: true,
+                multiField: 'lastName',
+                multiStyle: {
+                    space: 5,
+                    width: 80
+                }
+            });
+            $('#set-btn').click(function() {
+                $('#basic').trigger('set', { id: '3,4' });
+            });
+        });
+    </script>";
 	
+	echo "<script>
+	function addUsers(){
+		var elements = document.getElementsByClassName('multi-items');
+		for(let i=0; i < elements[0].children.length; i++){
+			let element = elements[0].children[i];
+			$.ajax({
+				type: 'POST',
+				url: 'add_OnBoard.php',
+				data: { project_id: ".$_GET['edit'].", user_id: element.dataset.id },
+				success: function(response) {
+					$('#result').html(response);
+				}
+			});
+		}
+	}
+	</script>";
+	
+}
+function update_project_name($id, $name){
+	global $db;
+	$str = "update project set project_name = '{$name}' where project_id = {$id}";
+    $stmt = $db->prepare($str);
+    $stmt->execute();
+}
+function get_project_name($id){
+	global $db;
+	$str = "SELECT * from project where project_id  = ". $id;
+    $stmt = $db->prepare($str);
+    $stmt->execute();
+	if($stmt->rowCount() === 0){
+		
+	}else{
+		while ($row = $stmt->fetch()) {
+			return $row['project_name'];
+		}
+	}
+}
+
+
+function get_data_users($id){
+	global $db;
+	$str = "SELECT * from user where id not in (select user_id from on_board where project_id = ". $id . ")";
+    $stmt = $db->prepare($str);
+    $stmt->execute();
+	$result="";
+	if($stmt->rowCount() === 0){
+		
+	}else{
+		while ($row = $stmt->fetch()) {
+			$result=$result."{id: ".$row['id'].", firstName: '".$row['fname']."', lastName: '".$row['lname']."'},";
+		}
+	}
+	return $result;
 }
 function delete_project($id){
 	global $db;
@@ -346,7 +448,6 @@ echo '<div class="hideSkipLink">
                         end: args.newEnd.toString()
                     },
                     function(data) {
-                        dp.message("Updated");
                     });
                 };
 
@@ -357,7 +458,6 @@ echo '<div class="hideSkipLink">
                         end: args.newEnd.toString()
                     },
                     function(data) {
-                        dp.message("Updated");
                     });
                 };
 
@@ -369,7 +469,6 @@ echo '<div class="hideSkipLink">
                         position: args.position
                     },
                     function(data) {
-                        dp.message("Updated");
                     });
                 };
 
@@ -440,7 +539,7 @@ function display_project_delete_page(){
 }
 function get_project_by_id($id){
     global $db;
-	$str = "SELECT p.project_id, p.project_name, p.user_id FROM project p join on_board o on o.project_id = p.project_id where p.project_id = {$id}";
+	$str = "SELECT DISTINCT p.project_id, p.project_name, p.user_id FROM project p join on_board o on o.project_id = p.project_id where p.project_id = {$id}";
     $stmt = $db->prepare($str);
     $stmt->execute();
 	if($stmt->rowCount() === 0){
