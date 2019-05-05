@@ -7,15 +7,15 @@
 - [ ] User Profile (view) <= NEXT
 - [ ] Admin 
  - Users (done)
- - Projects
+ - Projects (done)
    - View (done)
-   - Edit (autocomplete + AJAX POST (without reset)
+   - Edit (autocomplete + AJAX POST (done)
    - Delete (done)
 - [x] Authentication on pages
 - [x] View Projects
 - [x] Create projects
 - [x] Responsive project (per user) view
-- [ ] Manage projects (change name, add people...)
+- [x] Manage projects (change name, add people...)
 - [x] Implement gantt into project view
 - [ ] UI tweaks
 - [ ] Neural network to project view
