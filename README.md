@@ -4,8 +4,8 @@
 - [x] Login
 - [x] Registration
 - [x] Authentication
-- [ ] User Profile (view) <= NEXT
-- [ ] Admin 
+- [x] User Profile (view) <= NEXT
+- [x] Admin 
  - Users (done)
  - Projects (done)
    - View (done)
@@ -17,18 +17,9 @@
 - [x] Responsive project (per user) view
 - [x] Manage projects (change name, add people...)
 - [x] Implement gantt into project view
-- [ ] UI tweaks
-- [ ] Neural network to project view
-- [ ] Alpha version
-
-### Low Priority:
-- [ ] User Profile (reset pass)
-
-### If time:
-- [ ] On project messaging
-- [ ] @mentions on messages
-- [ ] Notifications on @mentions
-- [ ] Forget password PHP Mailer
+- [x] UI tweaks
+- [x] Neural network to project view
+- [x] Alpha version
 
 ### Avtorja:
 - Nejc Žun

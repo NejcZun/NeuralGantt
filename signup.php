@@ -34,18 +34,13 @@
         <div class="row w-100">
 		<div class="col-lg-12 mx-auto">
 			<div class="col-lg-6 mx-auto">
-				<div class="alert alert-danger">
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-						<i class="mdi mdi-close"></i>
-					</button>
-					<span><b> Danger - </b> This is a regular notification made with ".alert-danger"</span>
-				</div>
+			<?php include 'vendors/functions/register.php'; ?>
 			</div>
 		</div>
           <div class="col-lg-4 mx-auto">
             <div class="auto-form-wrapper">
 			            <h2 class="text-center mb-4">Sign Up</h2>
-              <form action="./signup.php" method="POST" >
+              <form action="signup.php" method="POST" >
 			  <div class="row">
                       <div class="col-md-6">
                         <div class="form-group row">

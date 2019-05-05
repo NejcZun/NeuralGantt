@@ -38,7 +38,7 @@ function display_edit_project($id){
 	echo '<div class="col-md-6 d-flex align-items-stretch grid-margin" style="margin:auto; margin-bottom: 40px;">
               <div class="row flex-grow">
                 <div class="col-12">
-                  <div class="card">
+                  <div class="card shadow-z-1">
                     <div class="card-body">
 					  <h3 class="card-title" style="font-size:24px;">Change name:</h3>
 						<form method="POST" action="./index.php?edit='.$id.'">
@@ -624,7 +624,7 @@ function display_delete_card(){
 	echo '<div class="col-md-6 d-flex align-items-stretch grid-margin" style="margin:auto; margin-bottom: 40px;">
               <div class="row flex-grow">
                 <div class="col-12">
-                  <div class="card">
+                  <div class="card shadow-z-1">
                     <div class="card-body">
                       <h3 class="card-title" style="font-size:24px;">Warning:</h3>
 					  <p>By deleting this project you are also deleting all the links and tasks.</p>

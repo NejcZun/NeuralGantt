@@ -85,6 +85,7 @@ user_has_valid_cookie_project();
         <div class="content-wrapper">
 			<?php 
 				if(isset($_GET['project'])){
+					echo "<h2>".get_project_name($_GET['project'])."</h2>";
 					display_neural_network($_GET['project']);
 				}else{
 					display_user_neurals();
@@ -96,8 +97,8 @@ user_has_valid_cookie_project();
 		</div>
 	     <footer class="footer">
           <div class="container-fluid clearfix">
-            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2019<a href="https://www.fri.uni-lj.si/sl" target="_blank" style="color:#5983e8;">FRI Ljubljana</a>. All rights reserved.</span>
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Avtorja: Nejc Žun, Grega Černak</span>
+            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2019 <a href="https://www.fri.uni-lj.si/sl" target="_blank" style="color:#5983e8;">FRI Ljubljana</a>. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Avtorja: Nejc Žun, Gregor Černak</span>
           </div>
          </footer>
 		</div>

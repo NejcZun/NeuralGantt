@@ -52,6 +52,12 @@ function display_user_navigation_home(){
               <i class="menu-icon mdi mdi-folder-open" style="color:#979797"></i>
               <span class="menu-title">My Projects</span>
             </a>
+          </li>
+		  <li class="nav-item">
+            <a class="nav-link" href="project/neural.php" style="color:#4a4a4a">
+              <i class="menu-icon mdi mdi-chemical-weapon" style="color:#979797"></i>
+              <span class="menu-title">My Neurals</span>
+            </a>
           </li>';
 		 if(check_if_user_admin()){
 			echo '<li class="nav-item">
@@ -99,7 +105,15 @@ function display_user_navigation_project(){
               <i class="menu-icon mdi mdi-folder-open" style="color:#979797"></i>
               <span class="menu-title">My Projects</span>
             </a>
-          </li>';
+          </li>
+		  <li class="nav-item">
+            <a class="nav-link" href="neural.php" style="color:#4a4a4a">
+              <i class="menu-icon mdi mdi-chemical-weapon" style="color:#979797"></i>
+              <span class="menu-title">My Neurals</span>
+            </a>
+          </li>
+		  
+		  ';
 		  if(check_if_user_admin()){
 			echo '<li class="nav-item">
             <a class="nav-link" href="../admin/index.php" style="color:#4a4a4a">
@@ -146,7 +160,14 @@ function display_user_navigation_neural(){
               <i class="menu-icon mdi mdi-folder-open" style="color:#979797"></i>
               <span class="menu-title">My Projects</span>
             </a>
-          </li>';
+          </li>
+		  <li class="nav-item">
+            <a class="nav-link" href="neural.php" style="color:#4a4a4a">
+              <i class="menu-icon mdi mdi-chemical-weapon" style="color:#979797"></i>
+              <span class="menu-title">My Neurals</span>
+            </a>
+          </li> 
+		  ';
 		  if(check_if_user_admin()){
 			echo '<li class="nav-item">
             <a class="nav-link" href="../admin/index.php" style="color:#4a4a4a">
@@ -193,7 +214,14 @@ function display_user_navigation_admin(){
               <i class="menu-icon mdi mdi-folder-open" style="color:#979797"></i>
               <span class="menu-title">My Projects</span>
             </a>
-          </li>';
+          </li>
+		  <li class="nav-item">
+            <a class="nav-link" href="../project/neural.php" style="color:#4a4a4a">
+              <i class="menu-icon mdi mdi-chemical-weapon" style="color:#979797"></i>
+              <span class="menu-title">My Neurals</span>
+            </a>
+          </li>
+		  ';
 	  if(check_if_user_admin()){
 	echo '<li class="nav-item">
 			<a class="nav-link" href="index.php" style="color:#4a4a4a">

@@ -1,6 +1,7 @@
 <?php 
 include 'vendors/functions/auth.php'; 
 include 'vendors/functions/menu.php';
+include 'vendors/functions/profile.php';
 user_has_valid_cookie();
 ?>
 <!DOCTYPE html>
@@ -31,16 +32,17 @@ user_has_valid_cookie();
       <div class="navbar-menu-wrapper d-flex align-items-center">
         <ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
           <li class="nav-item">
-            <a href="../home.php" class="nav-link">Home
+            <a href="home.php" class="nav-link">Home
             </a>
           </li>
           <li class="nav-item">
-            <a href="../project/index.php" class="nav-link">
+            <a href="project/index.php" class="nav-link">
               <i class="mdi mdi-folder-multiple"></i>My Projects</a>
           </li>
-		  <?php
-			display_admin_mod_list_item_admin_active();
-		  ?>
+		  <li class="nav-item active">
+            <a href="profile.php?user=<?php echo $_GET['user']; ?>" class="nav-link">
+              <i class="mdi mdi-account"></i>My Profile</a>
+          </li>
         </ul>
         <?php 
 			display_user_navbar_home();
@@ -58,14 +60,29 @@ user_has_valid_cookie();
       <div class="main-panel">
         <div class="content-wrapper">
 			<div class="row">
-			 
+			 <div class="col-md-6 d-flex align-items-stretch grid-margin" style="margin:auto; margin-bottom: 40px;">
+              <div class="row flex-grow">
+			  <?php
+			  if(isset($_POST['fname'])){
+				  user_updated_message();
+			  }
+			  ?>
+                <div class="col-12">
+                  <div class="card shadow-z-1">
+                    <?php
+						display_user_profile();
+					?>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <footer class="footer">
           <div class="container-fluid clearfix">
             <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2019
               <a href="https://www.fri.uni-lj.si/sl" target="_blank" style="color:#5983e8;">FRI Ljubljana</a>. All rights reserved.</span>
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Avtorja: Nejc Žun, Grega Černak
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Avtorja: Nejc Žun, Gregor Černak
             </span>
           </div>
         </footer>
