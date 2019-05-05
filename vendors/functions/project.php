@@ -32,7 +32,7 @@ function parent_display_project(){
 }
 function display_edit_project($id){
 	if(isset($_POST['project_name'])){
-		update_project_name($id, $_POST['project_name']);
+		update_project_name($id, $_POST['project_name'], $_POST['end_date']);
 	}
 	echo '<div class="col-md-6 d-flex align-items-stretch grid-margin" style="margin:auto; margin-bottom: 40px;">
               <div class="row flex-grow">
@@ -44,6 +44,10 @@ function display_edit_project($id){
                         <div class="form-group">
                           <label for="project_name">Project name</label>
                           <input name="project_name" type="text" class="form-control" id="project_name" required="" value ='.get_project_name($id).'>
+                        </div>
+						<div class="form-group">
+                          <label for="project_name">End date</label>
+                          <input name="end_date" type="date" class="form-control" id="project_date" required="" value ='.get_project_end_date($id).'>
                         </div>
                         <button type="submit" class="btn btn-success mr-2">Update</button>
                       </form>
@@ -100,9 +104,9 @@ function display_edit_project($id){
 	</script>";
 	
 }
-function update_project_name($id, $name){
+function update_project_name($id, $name, $end){
 	global $db;
-	$str = "update project set project_name = '{$name}' where project_id = {$id}";
+	$str = "update project set project_name = '{$name}',  end = '{$end}' where project_id = {$id}";
     $stmt = $db->prepare($str);
     $stmt->execute();
 }
@@ -116,6 +120,19 @@ function get_project_name($id){
 	}else{
 		while ($row = $stmt->fetch()) {
 			return $row['project_name'];
+		}
+	}
+}
+function get_project_end_date($id){
+	global $db;
+	$str = "SELECT * from project where project_id  = ". $id;
+    $stmt = $db->prepare($str);
+    $stmt->execute();
+	if($stmt->rowCount() === 0){
+		
+	}else{
+		while ($row = $stmt->fetch()) {
+			return $row['end'];
 		}
 	}
 }
