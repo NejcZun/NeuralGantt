@@ -8,7 +8,7 @@ function display_neural_network($project){
                 <div id="mynetwork"></div>
                 <script type="text/javascript">
                     let phpNodes ='. json_encode(db_get_neuralNodes($project)) .';
-                    let phpEdges =' .json_encode(db_get_neuralEdges($project)) .';
+                    let phpEdges ='. json_encode(db_get_neuralEdges($project)) .';
                     var container = document.getElementById("mynetwork");
 
                     var data = {
