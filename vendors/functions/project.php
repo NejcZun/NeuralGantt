@@ -314,7 +314,7 @@ function display_user_projects(){
 					<div class="progress md-progress" style="height: 20px"><div class="progress-bar" role="progressbar" style="width: '.$progress.'%; height: 20px; background-color:#00ce68 ;" aria-valuenow="'.$progress.'" aria-valuemin="0" aria-valuemax="100">'.$progress.'%</div></div>
 				  </td>
 				  <td data-title="Action">';
-				  if(check_if_user_admin_or_mod()){
+				  if(check_if_user_admin_or_mod() && verify_user_profile($row['project_id'])){
 					  echo '<a href="index.php?edit='.$row['project_id'].'" style="text-decoration:none;"><button type="button" class="btn btn-secondary btn-fw" style="min-width:100px;"><i class="mdi mdi-pencil"></i>Edit</button>
 							<a href="index.php?delete='.$row['project_id'].'" style="text-decoration:none;"><button type="button" class="btn btn-danger btn-fw" style="min-width:100px;"><i class="mdi mdi-delete"></i>Delete</button>';
 				  }else{
