@@ -10,6 +10,7 @@ function parent_display_project(){
 		}
 	}
 	if(isset($_GET['project'])){
+		echo "<h2>".get_project_name($_GET['project'])."</h2>";
 		display_gantt();
 	}else if(isset($_GET['edit'])){
 		if(!verify_user_profile($_GET['edit'])){ /* if user doesnt own the project and not admin */

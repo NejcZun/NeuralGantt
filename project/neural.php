@@ -59,16 +59,17 @@ user_has_valid_cookie_project();
             <a href="../home.php" class="nav-link">Home
             </a>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item">
             <a href="index.php" class="nav-link">
               <i class="mdi mdi-folder-multiple"></i>My Projects</a>
           </li>
-		  <?php 
-			display_admin_mod_list_item_projects();
-		  ?>
+		  <li class="nav-item active">
+            <a href="index.php" class="nav-link">
+              <i class="mdi mdi-chemical-weapon"></i>My Neural Networks</a>
+          </li>
         </ul>
         <?php
-			display_user_navbar_project();
+			display_user_navbar_neural();
 		?>
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
           <span class="mdi mdi-menu"></span>
@@ -77,7 +78,7 @@ user_has_valid_cookie_project();
     </nav>
     <div class="container-fluid page-body-wrapper">
       <?php
-		display_user_navigation_project();
+		display_user_navigation_neural();
 	  ?>
       <!-- partial -->
       <div class="main-panel">
