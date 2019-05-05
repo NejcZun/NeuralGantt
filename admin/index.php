@@ -97,7 +97,7 @@ user_has_valid_cookie_admin();
               </div></a>
             </div>
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-              <a href="" class="admin-card"><div class="card card-statistics shadow-z-1">
+              <a href="neurals.php" class="admin-card"><div class="card card-statistics shadow-z-1">
                 <div class="card-body">
                   <div class="clearfix">
                     <div class="float-left">

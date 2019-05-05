@@ -1,4 +1,6 @@
 <?php
+require_once 'db_mysql.php';
+
 function display_neural_network($project){
         echo '<div class="col-md-12 d-flex align-items-stretch grid-margin" style="margin:auto; margin-bottom: 40px;">
         <div class="row flex-grow">
@@ -44,4 +46,71 @@ function display_neural_network($project){
         </div>
       </div>';
     }
+
+function display_user_neurals(){
+    global $db;
+	$user_id=db_get_userId(cookie_get_username());
+	$str = "SELECT p.project_id, p.project_name, p.user_id FROM project p join on_board o on o.project_id = p.project_id where o.user_id={$user_id}";
+    $stmt = $db->prepare($str);
+    $stmt->execute();
+	if($stmt->rowCount() === 0){
+		has_no_projects();
+	}else{
+	/* build the table class below: */
+		echo '<div class="table-responsive-vertical shadow-z-1">
+			  <table id="table" class="table table-hover table-mc-light-blue">
+				<thead>
+					<tr>
+						<th>Project name</th>
+						<th>Open</th>
+						<th>Manager</th>
+					</tr>
+				</thead>
+				<tbody>';
+		
+		while ($row = $stmt->fetch()) {
+			echo '<tr>
+				  <td data-title="Name" style="vertical-align:middle;">'.$row['project_name'].'</td>
+				  <td data-title="Open"><a href="neural.php?project='.$row['project_id'].'"><button type="button" class="btn btn-primary btn-fw" style="min-width:100px; background-color:#5983e8"><i class="mdi mdi-folder-open"></i>Open</button></a></td>
+				  <td data-title="Manager" style="vertical-align:middle;">'.db_get_userUsername($row['user_id']).'</td>
+				</tr>';
+		}
+		  echo '</tbody>
+			</table>
+		</div>';
+	}
+}
+
+function display_admin_neurals(){
+    global $db;
+	$str = "SELECT DISTINCT p.project_id, p.project_name, p.user_id FROM project p join on_board o on o.project_id = p.project_id";
+    $stmt = $db->prepare($str);
+    $stmt->execute();
+	if($stmt->rowCount() === 0){
+		has_no_projects();
+	}else{
+	/* build the table class below: */
+		echo '<div class="table-responsive-vertical shadow-z-1">
+			  <table id="table" class="table table-hover table-mc-light-blue">
+				<thead>
+					<tr>
+						<th>Project name</th>
+						<th>Open</th>
+						<th>Manager</th>
+					</tr>
+				</thead>
+				<tbody>';
+		
+		while ($row = $stmt->fetch()) {
+			echo '<tr>
+				  <td data-title="Name" style="vertical-align:middle;">'.$row['project_name'].'</td>
+				  <td data-title="Open"><a href="../project/neural.php?project='.$row['project_id'].'"><button type="button" class="btn btn-primary btn-fw" style="min-width:100px; background-color:#5983e8"><i class="mdi mdi-folder-open"></i>Open</button></a></td>
+				  <td data-title="Manager" style="vertical-align:middle;">'.db_get_userUsername($row['project_id']).'</td>
+				</tr>';
+		}
+		  echo '</tbody>
+			</table>
+		</div>';
+	}
+}
 ?>
