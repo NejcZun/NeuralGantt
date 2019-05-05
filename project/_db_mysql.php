@@ -291,6 +291,7 @@ function db_get_users(){
     $stmt->execute();
     return $stmt->fetch();
 }
+
 function cookie_get_username(){
 	return base64_decode($_COOKIE['user']);
 }
@@ -304,5 +305,4 @@ function db_get_usersId($user){
     $result = $stmt->fetch();
     return $result['id'];
 }
-
 ?>
