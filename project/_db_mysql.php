@@ -291,6 +291,7 @@ function db_get_users(){
     $stmt->execute();
     return $stmt->fetch();
 }
+
 function cookie_get_username(){
 	return base64_decode($_COOKIE['user']);
 }
@@ -304,23 +305,4 @@ function db_get_usersId($user){
     $result = $stmt->fetch();
     return $result['id'];
 }
-
-function db_get_neuralNodes($project){
-    global $db;
-    $query = "SELECT DISTINCT t.id, CONCAT(t.name,'\n ', u.lname) AS 'label', u.role_id AS 'group' FROM task t INNER JOIN user u ON u.id = t.user_id WHERE t.project_id = :project";
-    $stmt = $db->prepare($query);
-    $stmt->bindParam(":project", $project);
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-
-function db_get_neuralEdges($project){
-    global $db;
-    $query = "SELECT l.from_id AS 'from', l.to_id AS 'to'FROM link l WHERE l.project_id = :project";
-    $stmt = $db->prepare($query);
-    $stmt->bindParam(":project", $project);
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-
 ?>

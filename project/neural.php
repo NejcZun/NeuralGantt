@@ -1,66 +1,109 @@
-<?php
-    if(isset($_GET) && !empty($_GET['id'])){
-        include_once '_db_mysql.php';
-    }else{
-        // redirect
-        echo '<script>window.location.replace("index.php");</script>';
-    }
+<?php 
+include '../vendors/functions/auth.php'; 
+include '../vendors/functions/menu.php'; 
+include '../vendors/functions/project.php';
+include '../vendors/functions/neural.php';
+user_has_valid_cookie_project(); 
 ?>
-<html>
-<head>
-    <script type="text/javascript" src="../js/vis.min.js"></script>
-    <link href="../css/vis.css" rel="stylesheet" type="text/css" />
+<!DOCTYPE html>
+<html lang="en">
 
-    <style type="text/css">
-        #mynetwork {
-            width: 1000px;
-            height: 800px;
-            border: 1px solid lightgray;
-            background-color: #222222;
-            margin: auto;
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>UV Projektna Naloga</title>
+  <link rel="stylesheet" href="../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="../vendors/css/vendor.bundle.addons.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/magicsearch.css">
+  <link rel="stylesheet" href="../css/material-table.css">
+  <link rel="shortcut icon" href="../media/pictures/logo.png" />
+  <!-- editor -->
+  <link rel="stylesheet" href="../media/layout.css">
+  <link rel="stylesheet" href="../css/gantt.css">
+  <script src="../js/jquery-1.9.1.min.js" type="text/javascript"></script>
+  <script src="../js/gantt.min.js" type="text/javascript"></script>
+  <!-- vis -->
+  <script type="text/javascript" src="../js/vis.min.js"></script>
+  <link href="../css/vis.css" rel="stylesheet" type="text/css" />
+  <style>
+	.gantt_default_corner  > div:nth-child(4) {
+	    background: #F5F5F5!important;
+		color: #F5F5F5!important;
+		content: 'Burek'!important;
+	}
+	.profile-name{
+		font-family: "Poppins", sans-serif;
+	}
+    #mynetwork {
+            width: 100%;
+            height: 600px;
         }
-    </style>
+</style>
 </head>
 <body>
-<div id="mynetwork"></div>
-
-<script type="text/javascript">
-
-    let phpNodes = <?php  echo json_encode(db_get_neuralNodes($_GET['id'])); ?>;
-    console.log(phpNodes);
-
-    let phpEdges = <?php  echo json_encode(db_get_neuralEdges($_GET['id'])); ?>;
-    console.log(phpEdges);
-
-    var container = document.getElementById('mynetwork');
-
-    var data = {
-        nodes: phpNodes,
-        edges: phpEdges
-    };
-
-	var options = {
-        nodes: {
-            shape: 'dot',
-            size: 20,
-            borderWidth: 2,
-            font: {
-                color: '#ffffff',
-                size: 14
-            }
-        },
-        edges: {
-            width: 2
-        },
-        groups: {
-            1: {color:{border: '#e00d12', background:'#fb7e81', highlight: {border: '#fd5a77', background: '#ffc0cb'}}, borderWidth:2},
-            2: {color:{border: '#6865fc', background:'#6e6efd', highlight: {border: '#2b7ce9', background: '#97c2fc'}}, borderWidth:2},
-            3: {color:{border: '#64cb2a', background:'#7be141', highlight: {border: '#4ad63a', background: '#c2fabc'}}, borderWidth:2}
-        }
-	}
-
-    // initialize your network!
-    var network = new vis.Network(container, data, options);
-</script>
+  <div class="container-scroller">
+    <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style="background: #5983e8;">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
+        <a class="navbar-brand brand-logo" href="index.php">
+          <img src="../media/pictures/logo-mini.svg" alt="logo" style="height: 40px;width: 40px;"/><h2 style="color:rgb(74, 74, 74); padding-top:10px;">UV Projektna</h2>
+        </a>
+        <a class="navbar-brand brand-logo-mini" href="index.php">
+		<img src="../media/pictures/logo-mini.svg" alt="logo" style="height: 40px;width: 100%;"/>
+        </a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center">
+        <ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
+          <li class="nav-item">
+            <a href="../home.php" class="nav-link">Home
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a href="index.php" class="nav-link">
+              <i class="mdi mdi-folder-multiple"></i>My Projects</a>
+          </li>
+		  <?php 
+			display_admin_mod_list_item_projects();
+		  ?>
+        </ul>
+        <?php
+			display_user_navbar_project();
+		?>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="mdi mdi-menu"></span>
+        </button>
+      </div>
+    </nav>
+    <div class="container-fluid page-body-wrapper">
+      <?php
+		display_user_navigation_project();
+	  ?>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+			<?php 
+                display_neural_network($_GET['project']);
+			?>
+			
+        <div class="clear">
+        </div>
+		</div>
+	     <footer class="footer">
+          <div class="container-fluid clearfix">
+            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2019<a href="https://www.fri.uni-lj.si/sl" target="_blank" style="color:#5983e8;">FRI Ljubljana</a>. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Avtorja: Nejc Žun, Grega Černak</span>
+          </div>
+         </footer>
+		</div>
+	</div>
+  </div>
+  <script src="../vendors/js/vendor.bundle.base.js"></script>
+  <script src="../vendors/js/vendor.bundle.addons.js"></script>
+  <script src="../js/magicsearch.js"></script>
+  <script src="../js/off-canvas.js"></script>
+  <script src="../js/misc.js"></script>
+  <script src="../js/dashboard.js"></script>
+  <script src="../js/material-table.js"></script>
 </body>
 </html>
