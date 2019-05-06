@@ -30,8 +30,15 @@ function display_user_navigation_home(){
                   <p class="profile-name">'.db_get_firstName(get_user_username()). ' '. db_get_lastName(get_user_username()).'</p>
                   <div>
                     <small class="designation text-muted">'.db_get_userRoleName(get_user_username()).'</small>
-                    <span class="status-indicator online"></span>
-                  </div>
+                    ';
+					if(db_get_userRoleName(get_user_username()) == 'admin'){
+						echo '<span class="status-indicator online" style="border-color:#fb7e81;"></span>';
+					}else if(db_get_userRoleName(get_user_username()) == 'manager'){
+						echo '<span class="status-indicator online" style="border-color:#6e6efd;"></span>';
+					}else{
+						echo '<span class="status-indicator online"></span>';
+					}
+                  echo '</div>
                 </div>
               </div>';
               if(check_if_user_admin_or_mod()){
@@ -83,7 +90,15 @@ function display_user_navigation_project(){
                   <p class="profile-name" style="color:rgb(61, 61, 61);">'.db_get_firstName(get_user_username()). ' '. db_get_lastName(get_user_username()).'</p>
                   <div>
                     <small class="designation text-muted">'.db_get_userRoleName(get_user_username()).'</small>
-                    <span class="status-indicator online"></span>
+                    ';
+					if(db_get_userRoleName(get_user_username()) == 'admin'){
+						echo '<span class="status-indicator online" style="border-color:#fb7e81;"></span>';
+					}else if(db_get_userRoleName(get_user_username()) == 'manager'){
+						echo '<span class="status-indicator online" style="border-color:#6e6efd;"></span>';
+					}else{
+						echo '<span class="status-indicator online"></span>';
+					}
+                  echo '
                   </div>
                 </div>
               </div>';
@@ -138,7 +153,15 @@ function display_user_navigation_neural(){
                   <p class="profile-name" style="color:rgb(61, 61, 61);">'.db_get_firstName(get_user_username()). ' '. db_get_lastName(get_user_username()).'</p>
                   <div>
                     <small class="designation text-muted">'.db_get_userRoleName(get_user_username()).'</small>
-                    <span class="status-indicator online"></span>
+                    ';
+					if(db_get_userRoleName(get_user_username()) == 'admin'){
+						echo '<span class="status-indicator online" style="border-color:#fb7e81;"></span>';
+					}else if(db_get_userRoleName(get_user_username()) == 'manager'){
+						echo '<span class="status-indicator online" style="border-color:#6e6efd;"></span>';
+					}else{
+						echo '<span class="status-indicator online"></span>';
+					}
+                  echo '
                   </div>
                 </div>
               </div>';
@@ -192,7 +215,15 @@ function display_user_navigation_admin(){
                   <p class="profile-name" style="color:rgb(61, 61, 61);">'.db_get_firstName(get_user_username()). ' '. db_get_lastName(get_user_username()).'</p>
                   <div>
                     <small class="designation text-muted">'.db_get_userRoleName(get_user_username()).'</small>
-                    <span class="status-indicator online"></span>
+                    ';
+					if(db_get_userRoleName(get_user_username()) == 'admin'){
+						echo '<span class="status-indicator online" style="border-color:#fb7e81;"></span>';
+					}else if(db_get_userRoleName(get_user_username()) == 'manager'){
+						echo '<span class="status-indicator online" style="border-color:#6e6efd;"></span>';
+					}else{
+						echo '<span class="status-indicator online"></span>';
+					}
+                  echo '
                   </div>
                 </div>
               </div>';
