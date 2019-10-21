@@ -20,10 +20,16 @@
 - [x] UI tweaks
 - [x] Neural network to project view
 - [x] Alpha version
+- [ ] Settings
+- [ ] Night Mode
+- [ ] Fix static positions on gantt
+- [ ] Fix resize effect
 
-### Avtorja:
+### Avtorji:
 - Nejc Žun
 - Gregor Černak
+- Mateo Kalem
+- Anže Škerjanc
 
 ### How to load database:
 run:
