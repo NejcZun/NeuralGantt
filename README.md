@@ -1,4 +1,4 @@
-# UVProjektnaNaloga
+# ProjektnaNaloga
 ### To do list:
 - [x] Main page
 - [x] Login
