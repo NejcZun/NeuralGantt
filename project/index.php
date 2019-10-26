@@ -22,7 +22,7 @@ user_has_valid_cookie_project();
   <link rel="stylesheet" href="../media/layout.css">
   <link rel="stylesheet" href="../css/gantt.css">
   <script src="../js/jquery-1.9.1.min.js" type="text/javascript"></script>
-  <script src="../js/gantt.min.js" type="text/javascript"></script>
+  <script src="../js/gantt.js" type="text/javascript"></script>
   <style>
 	.gantt_default_corner  > div:nth-child(4) {
 	    background: #F5F5F5!important;
