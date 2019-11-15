@@ -290,12 +290,6 @@ function display_user_navbar_home(){
               <a class="dropdown-item mt-2" href="profile.php?user='.$_COOKIE['user'].'">
                 Manage Account
               </a>
-              <a class="dropdown-item" href="">
-                Change Password
-              </a>
-              <a class="dropdown-item" href="">
-                Check Inbox
-              </a>
               <a class="dropdown-item" href="logout.php">
                 Sign Out
               </a>
@@ -327,12 +321,6 @@ function display_user_navbar_project(){
               </a>
               <a class="dropdown-item mt-2" href="../profile.php?user='.$_COOKIE['user'].'">
                 Manage Account
-              </a>
-              <a class="dropdown-item" href="">
-                Change Password
-              </a>
-              <a class="dropdown-item" href="">
-                Check Inbox
               </a>
               <a class="dropdown-item" href="../logout.php">
                 Sign Out
@@ -366,12 +354,6 @@ function display_user_navbar_neural(){
               <a class="dropdown-item mt-2" href="../profile.php?user='.$_COOKIE['user'].'">
                 Manage Account
               </a>
-              <a class="dropdown-item" href="">
-                Change Password
-              </a>
-              <a class="dropdown-item" href="">
-                Check Inbox
-              </a>
               <a class="dropdown-item" href="../logout.php">
                 Sign Out
               </a>
@@ -403,12 +385,6 @@ function display_user_navbar_admin(){
               </a>
               <a class="dropdown-item mt-2" href="../profile.php?user='.$_COOKIE['user'].'">
                 Manage Account
-              </a>
-              <a class="dropdown-item" href="">
-                Change Password
-              </a>
-              <a class="dropdown-item" href="">
-                Check Inbox
               </a>
               <a class="dropdown-item" href="../logout.php">
                 Sign Out

@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>UV | Login</title>
+  <title>NeuralGantt | Login</title>
   <link rel="stylesheet" href="vendors/iconfonts/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
   <link rel="stylesheet" href="vendors/css/vendor.bundle.addons.css">
@@ -66,14 +66,7 @@
       </div>
     </div>
   </div>
-  <footer class="footer" style="background:white; border-top: 1px solid white;">
-    <div class="container-fluid clearfix">
-        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2019
-			<a href="https://www.fri.uni-lj.si/sl" target="_blank" style="color:#5983e8;">FRI Ljubljana</a>. All rights reserved.</span>
-			<span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Avtorja: Nejc Žun, Gregor Černak
-		</span>
-    </div>
-  </footer>
+  <?php include 'vendors/functions/footer.php'; ?>
   <script src="vendors/js/vendor.bundle.base.js"></script>
   <script src="vendors/js/vendor.bundle.addons.js"></script>
   <script src="js/off-canvas.js"></script>
