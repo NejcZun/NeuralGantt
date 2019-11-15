@@ -28,6 +28,7 @@
 ### Avtorji:
 - Nejc Žun
 - Gregor Černak
+- Dominik Bečaj
 - Mateo Kalem
 - Anže Škerjanc
 
