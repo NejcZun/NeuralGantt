@@ -24,6 +24,7 @@
 - [ ] Night Mode
 - [ ] Fix static positions on gantt
 - [ ] Fix resize effect
+- [ ] Beta version
 
 ### Avtorji:
 - Nejc Žun
