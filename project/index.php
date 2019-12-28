@@ -1,8 +1,8 @@
-<?php 
-include '../vendors/functions/auth.php'; 
-include '../vendors/functions/menu.php'; 
+<?php
+include '../vendors/functions/auth.php';
+include '../vendors/functions/menu.php';
 include '../vendors/functions/project.php';
-user_has_valid_cookie_project(); 
+user_has_valid_cookie_project();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,9 +25,10 @@ user_has_valid_cookie_project();
   <script src="../js/gantt.js" type="text/javascript"></script>
   <style>
 	.gantt_default_corner  > div:nth-child(4) {
-	    background: #F5F5F5!important;
-		color: #F5F5F5!important;
-		content: 'Burek'!important;
+	    background-color: #F5F5F5!important;
+	    color: #F5F5F5!important;
+		  content: 'Burek' !important;
+      padding: 0px !important;
 	}
 	.profile-name{
 		font-family: "Poppins", sans-serif;
@@ -55,7 +56,7 @@ user_has_valid_cookie_project();
             <a href="index.php" class="nav-link">
               <i class="mdi mdi-folder-multiple"></i>My Projects</a>
           </li>
-		  <?php 
+		  <?php
 			display_admin_mod_list_item_projects();
 		  ?>
         </ul>
@@ -74,10 +75,10 @@ user_has_valid_cookie_project();
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
-			<?php 
+			<?php
 			parent_display_project();
 			?>
-			
+
         <div class="clear">
         </div>
 		</div>

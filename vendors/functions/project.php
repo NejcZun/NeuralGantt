@@ -2,7 +2,7 @@
 require_once 'db_mysql.php';
 
 function parent_display_project(){
-	
+
 	/*processing pre-defined actions */
 	if(isset($_POST['delete'])){
 		if(verify_user_profile($_POST['delete'])){
@@ -18,18 +18,18 @@ function parent_display_project(){
 		}else{
 			display_edit_project($_GET['edit']);
 		}
-		
+
 	}else if(isset($_GET['delete'])){
 		if(!verify_user_profile($_GET['delete'])){ /* if user doesnt own the project and not admin */
 			echo '<script>window.location.replace("index.php");</script>';
 		}else{
 			display_project_delete_page();
 		}
-		
+
 	}else{
-		display_user_projects(); 
+		display_user_projects();
 	}
-	
+
 }
 function display_edit_project($id){
 	if(isset($_POST['project_name'])){
@@ -86,7 +86,7 @@ function display_edit_project($id){
             });
         });
     </script>";
-	
+
 	echo "<script>
 	function addUsers(){
 		var elements = document.getElementsByClassName('multi-items');
@@ -103,7 +103,7 @@ function display_edit_project($id){
 		}
 	}
 	</script>";
-	
+
 }
 function update_project_name($id, $name, $end){
 	global $db;
@@ -117,7 +117,7 @@ function get_project_name($id){
     $stmt = $db->prepare($str);
     $stmt->execute();
 	if($stmt->rowCount() === 0){
-		
+
 	}else{
 		while ($row = $stmt->fetch()) {
 			return $row['project_name'];
@@ -130,7 +130,7 @@ function get_project_end_date($id){
     $stmt = $db->prepare($str);
     $stmt->execute();
 	if($stmt->rowCount() === 0){
-		
+
 	}else{
 		while ($row = $stmt->fetch()) {
 			return $row['end'];
@@ -146,7 +146,7 @@ function get_data_users($id){
     $stmt->execute();
 	$result="";
 	if($stmt->rowCount() === 0){
-		
+
 	}else{
 		while ($row = $stmt->fetch()) {
 			$result=$result."{id: ".$row['id'].", firstName: '".$row['fname']."', lastName: '".$row['lname']."'},";
@@ -160,27 +160,27 @@ function delete_project($id){
 	$stmt = $db->prepare("DELETE FROM link WHERE project_id = :id");
 	$stmt->bindParam(':id', $id);
 	$stmt->execute();
-	
+
 	/* deletes from tasks */
-	
+
 	$stmt = $db->prepare("DELETE FROM task WHERE project_id = :id");
 	$stmt->bindParam(':id', $id);
 	$stmt->execute();
-	
+
 	/*deletes from on_board */
-	
+
 	$stmt = $db->prepare("DELETE FROM on_board WHERE project_id = :id");
 	$stmt->bindParam(':id', $id);
 	$stmt->execute();
-	
-	
+
+
 	/*deletes all projects */
-	
+
 	$stmt = $db->prepare("DELETE FROM project WHERE project_id = :id");
 	$stmt->bindParam(':id', $id);
 	$stmt->execute();
-	
-	
+
+
 }
 
 
@@ -236,12 +236,12 @@ function add_project($project_name, $project_end){
 	  $project_end = $m['end'];
       $stmt->execute();
     }
-	
+
 	/*zdej ga more pa se dodt notr v on_board */
-	
+
 	$project_id=get_project_id_onCreate($project_start);
 	insert_user_into_project($user_id, $project_id);
-	
+
 	/*message where to view your messages*/
 	project_created_message();
 }
@@ -267,7 +267,7 @@ function insert_user_into_project($user_id, $project_id){
 	  $project_id = $m['project_id'];
 	  $stmt->execute();
 	}
-	
+
 }
 
 
@@ -304,7 +304,7 @@ function display_user_projects(){
 					</tr>
 				</thead>
 				<tbody>';
-		
+
 		while ($row = $stmt->fetch()) {
 			$progress=round(get_progress_bar($row['project_id'])*100);
 			echo '<tr>
@@ -352,7 +352,7 @@ function display_user_projects_admin(){
 					</tr>
 				</thead>
 				<tbody>';
-		
+
 		while ($row = $stmt->fetch()) {
 			$progress=round(get_progress_bar($row['project_id'])*100);
 			echo '<tr>
@@ -425,7 +425,7 @@ echo '<div class="hideSkipLink">
             <div id="dp"></div>
 			<script type="text/javascript">
 				var dp = new DayPilot.Gantt("dp");
-				
+
 				dp.startDate = new DayPilot.Date("'.getProjectStartDate($_GET['project']).'");
 				dp.days = '.getProjectDaysLength($_GET['project']).' + 1;
 
@@ -568,13 +568,13 @@ echo '<div class="hideSkipLink">
 
             </script>
         </div>';
-	
-	
+
+
 }
 function display_project_delete_page(){
 	display_delete_card();
 	get_project_by_id($_GET['delete']);
-	
+
 }
 function get_project_by_id($id){
     global $db;
@@ -597,7 +597,7 @@ function get_project_by_id($id){
 					</tr>
 				</thead>
 				<tbody>';
-		
+
 		while ($row = $stmt->fetch()) {
 			$progress=round(get_progress_bar($row['project_id'])*100);
 			echo '<tr>

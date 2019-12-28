@@ -19,7 +19,7 @@
 	background: #F5F5F5!important;
 }
 .gantt_default_timeheadergroup_inner{
-	
+
 }
 .gantt_default_rowheader_inner{
 	border-right: 3px solid rgb(192, 192, 192)!important;
@@ -28,7 +28,7 @@
 .gantt_default_event_bar_inner{
 	background-color:#5983e8 !important;
 }
-/* Arrows */ 
+/* Arrows */
 .gantt_default_link_vertical{
 	border-right-color: rgb(244, 67, 54)!important;
 }
@@ -48,7 +48,7 @@
 		left:0!important;
 		top:0!important;
 	}
-	
+
 }
 .modal_default_main{
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
@@ -63,5 +63,5 @@
 	font-size: 0.75rem;
 	padding: 0.5rem 0.75rem;
 	line-height: 14px;
-	font-weight: 300;	
+	font-weight: 300;
 }
