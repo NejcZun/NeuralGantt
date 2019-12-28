@@ -20,10 +20,10 @@
 - [x] UI tweaks
 - [x] Neural network to project view
 - [x] Alpha version
+- [x] Fix static positions on gantt
+- [x] Fix resize effect
 - [ ] Settings
 - [ ] Night Mode
-- [ ] Fix static positions on gantt
-- [ ] Fix resize effect
 - [ ] Beta version
 
 ### Avtorji:
